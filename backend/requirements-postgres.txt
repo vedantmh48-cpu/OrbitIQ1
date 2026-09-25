@@ -1,0 +1,5 @@
+# Optional production database/cache drivers for the v1 auth slice.
+# Installed in the Docker image (and on any host that wants the real
+# PostgreSQL + Redis stack). The app auto-detects these at runtime.
+psycopg[binary]>=3.2
+redis>=5.0

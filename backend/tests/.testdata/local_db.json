@@ -1,0 +1,1990 @@
+{
+ "users": {
+  "8fd40128c8f3424bbce667333c18168c": {
+   "name": "SatQuery Admin",
+   "email": "admin@satquery.ai",
+   "password": "pbkdf2_sha256$210000$05lIS5UV5jTT2+WVae+VrA==$90lqJXFeolBFhQclXvUd9+wYIlmdJKdJfkXb+JaZF8A=",
+   "role": "admin",
+   "active": true,
+   "email_verified": true,
+   "settings": {},
+   "created_at": "2026-09-04T09:11:10.210460+00:00",
+   "id": "8fd40128c8f3424bbce667333c18168c",
+   "updated_at": "2026-09-04T09:11:10.210541+00:00"
+  },
+  "b36a14661aa74e9c848948ab7af514ce": {
+   "name": "Demo Analyst",
+   "email": "demo@satquery.ai",
+   "password": "pbkdf2_sha256$210000$oZFArsRtAPNVvmLcG/nAhg==$xWlVtFQ0PvBdZ3yGen8saXDRIN3SFO/NPVn4gJOdJqA=",
+   "role": "analyst",
+   "active": true,
+   "email_verified": true,
+   "settings": {
+    "theme": "dark",
+    "default_satellite_source": "demo",
+    "default_data_type": "any",
+    "map_preferences": {
+     "base_layer": "dark",
+     "show_labels": true
+    },
+    "notifications": {
+     "email_summary": true,
+     "job_updates": true,
+     "weekly_digest": false
+    }
+   },
+   "created_at": "2026-09-04T09:11:10.421297+00:00",
+   "id": "b36a14661aa74e9c848948ab7af514ce",
+   "updated_at": "2026-09-04T09:11:10.421389+00:00"
+  },
+  "efed908eebac48dfa367317b05f20088": {
+   "name": "Alice",
+   "email": "alice@test.ai",
+   "password": "pbkdf2_sha256$210000$IDCr/5nyUTUsQNmv31vAWw==$LgQSP6e5rWiYecaNBA0f+RKeCnLvThRwZPTSM2+BtoE=",
+   "role": "user",
+   "active": true,
+   "email_verified": false,
+   "settings": {
+    "theme": "dark",
+    "default_satellite_source": "demo",
+    "default_data_type": "any",
+    "map_preferences": {
+     "base_layer": "dark",
+     "show_labels": true
+    },
+    "notifications": {
+     "email_summary": true,
+     "job_updates": true,
+     "weekly_digest": false
+    }
+   },
+   "created_at": "2026-09-04T09:11:12.711873+00:00",
+   "id": "efed908eebac48dfa367317b05f20088",
+   "updated_at": "2026-09-04T09:11:12.711938+00:00"
+  },
+  "25845008eeda4c4a8009f43f5104616b": {
+   "name": "Bob",
+   "email": "bob@test.com",
+   "password": "pbkdf2_sha256$210000$wQzT2+JOBM0z8swxCSg7cQ==$7/hCBwrB5JIOc6Ztt/iMl8miKcjt/p6W07NK7+Xipks=",
+   "role": "user",
+   "active": true,
+   "email_verified": false,
+   "settings": {
+    "theme": "dark",
+    "default_satellite_source": "demo",
+    "default_data_type": "any",
+    "map_preferences": {
+     "base_layer": "dark",
+     "show_labels": true
+    },
+    "notifications": {
+     "email_summary": true,
+     "job_updates": true,
+     "weekly_digest": false
+    }
+   },
+   "created_at": "2026-09-04T09:11:13.076797+00:00",
+   "id": "25845008eeda4c4a8009f43f5104616b",
+   "updated_at": "2026-09-04T09:11:13.076893+00:00"
+  },
+  "aea4a692cbaa47269d07f006f437c3f8": {
+   "name": "Carol",
+   "email": "carol@test.com",
+   "password": "pbkdf2_sha256$210000$2Jb8BiL3SDrwPYb6E4kQQQ==$gDREaOkiy0D8zu10X6bPPt4LcSwxT4YZIZaDfYpP04I=",
+   "role": "user",
+   "active": true,
+   "email_verified": false,
+   "settings": {
+    "theme": "dark",
+    "default_satellite_source": "demo",
+    "default_data_type": "any",
+    "map_preferences": {
+     "base_layer": "dark",
+     "show_labels": true
+    },
+    "notifications": {
+     "email_summary": true,
+     "job_updates": true,
+     "weekly_digest": false
+    }
+   },
+   "created_at": "2026-09-04T09:11:13.474688+00:00",
+   "id": "aea4a692cbaa47269d07f006f437c3f8",
+   "updated_at": "2026-09-04T09:11:33.967377+00:00",
+   "reset_token_hash": null,
+   "reset_token_expires": null
+  },
+  "8d9f50aed4574296a5bbc5d66d864608": {
+   "name": "Dave",
+   "email": "dave@test.ai",
+   "password": "pbkdf2_sha256$210000$I6uapUSR/5NimmMq4yiTRg==$3tvig0HijMIhtvbF6RzCpuu9KVkr9d/7oGhRHrN20aI=",
+   "role": "user",
+   "active": true,
+   "email_verified": false,
+   "settings": {
+    "theme": "dark",
+    "default_satellite_source": "demo",
+    "default_data_type": "any",
+    "map_preferences": {
+     "base_layer": "dark",
+     "show_labels": true
+    },
+    "notifications": {
+     "email_summary": true,
+     "job_updates": true,
+     "weekly_digest": false
+    }
+   },
+   "created_at": "2026-09-04T09:11:14.202902+00:00",
+   "id": "8d9f50aed4574296a5bbc5d66d864608",
+   "updated_at": "2026-09-04T09:11:14.202975+00:00"
+  },
+  "76d7a9dcd5e64ba4aa0a8556e525ad8e": {
+   "name": "Integration Tester",
+   "email": "itest@satquery.ai",
+   "password": "pbkdf2_sha256$210000$uYjuNlgDaT1MbfNZo6+myg==$3bAN7zog3TuvqoiJdWNmogPmwX0u0euJzblxqWYCKBc=",
+   "role": "user",
+   "active": true,
+   "email_verified": false,
+   "settings": {
+    "theme": "dark",
+    "default_satellite_source": "demo",
+    "default_data_type": "any",
+    "map_preferences": {
+     "base_layer": "dark",
+     "show_labels": true
+    },
+    "notifications": {
+     "email_summary": true,
+     "job_updates": true,
+     "weekly_digest": false
+    }
+   },
+   "created_at": "2026-09-04T09:11:14.479636+00:00",
+   "id": "76d7a9dcd5e64ba4aa0a8556e525ad8e",
+   "updated_at": "2026-09-04T09:11:14.742527+00:00"
+  }
+ },
+ "queries": {},
+ "datasets": {
+  "ds_demo_sar_kerala_flood": {
+   "id": "ds_demo_sar_kerala_flood",
+   "name": "Kerala Monsoon Flood Footprints (SAR)",
+   "provider_id": "demo_sar",
+   "provider_label": "Demo SAR · simulated Sentinel-1 C-band",
+   "data_type": "SAR",
+   "phenomenons": [
+    "flood",
+    "cyclone"
+   ],
+   "location": {
+    "name": "Kerala",
+    "country": "India",
+    "bbox": {
+     "min_lng": 74.8,
+     "min_lat": 8.0,
+     "max_lng": 77.6,
+     "max_lat": 12.8
+    }
+   },
+   "bbox": {
+    "min_lng": 74.8,
+    "min_lat": 8.0,
+    "max_lng": 77.6,
+    "max_lat": 12.8
+   },
+   "source": "DEMO",
+   "simulated": true,
+   "satellite": "Sentinel-1 C-SAR (simulated)",
+   "resolution": "10 m",
+   "temporal": {
+    "start": "2024-06-15",
+    "end": "2024-09-30",
+    "count": 16
+   },
+   "description": "Simulated SAR flood-water detection masks over Kerala during the 2024 monsoon southwest spells.",
+   "grid": {
+    "res_deg": 0.02,
+    "seed": 731
+   },
+   "series": [
+    {
+     "date": "2024-06-15",
+     "value": 0.08
+    },
+    {
+     "date": "2024-06-22",
+     "value": 0.1237
+    },
+    {
+     "date": "2024-06-29",
+     "value": 0.069
+    },
+    {
+     "date": "2024-07-06",
+     "value": 0.041
+    },
+    {
+     "date": "2024-07-13",
+     "value": 0.1118
+    },
+    {
+     "date": "2024-07-20",
+     "value": 0.1577
+    },
+    {
+     "date": "2024-07-27",
+     "value": 0.1795
+    },
+    {
+     "date": "2024-08-03",
+     "value": 0.3428
+    },
+    {
+     "date": "2024-08-10",
+     "value": 0.5865
+    },
+    {
+     "date": "2024-08-17",
+     "value": 0.6475
+    },
+    {
+     "date": "2024-08-24",
+     "value": 0.5064
+    },
+    {
+     "date": "2024-08-31",
+     "value": 0.3635
+    },
+    {
+     "date": "2024-09-07",
+     "value": 0.2543
+    },
+    {
+     "date": "2024-09-14",
+     "value": 0.1177
+    },
+    {
+     "date": "2024-09-21",
+     "value": 0.0473
+    },
+    {
+     "date": "2024-09-28",
+     "value": 0.0975
+    }
+   ],
+   "tags": [
+    "flood",
+    "monsoon",
+    "kerala",
+    "2024"
+   ],
+   "license": "Demo simulated data — NOT real satellite imagery",
+   "acquisition_time": "03:10 UTC",
+   "created_at": "2026-09-04T09:11:10.066798+00:00",
+   "updated_at": "2026-09-04T09:11:10.068412+00:00"
+  },
+  "ds_demo_sar_amazon_deforest": {
+   "id": "ds_demo_sar_amazon_deforest",
+   "name": "Amazon Forest Cover Change (SAR)",
+   "provider_id": "demo_sar",
+   "provider_label": "Demo SAR · simulated Sentinel-1",
+   "data_type": "SAR",
+   "phenomenons": [
+    "deforestation"
+   ],
+   "location": {
+    "name": "Amazon basin",
+    "country": "Brazil",
+    "bbox": {
+     "min_lng": -66.5,
+     "min_lat": -9.5,
+     "max_lng": -59.0,
+     "max_lat": -3.0
+    }
+   },
+   "bbox": {
+    "min_lng": -66.5,
+    "min_lat": -9.5,
+    "max_lng": -59.0,
+    "max_lat": -3.0
+   },
+   "source": "DEMO",
+   "simulated": true,
+   "satellite": "Sentinel-1 C-SAR (simulated)",
+   "resolution": "20 m",
+   "temporal": {
+    "start": "2021-01-01",
+    "end": "2024-12-01",
+    "count": 48
+   },
+   "description": "Simulated SAR-based forest/non-forest classification and change masks over the southern Amazon arc.",
+   "grid": {
+    "res_deg": 0.05,
+    "seed": 907
+   },
+   "series": [
+    {
+     "date": "2021-01-01",
+     "value": 0.62
+    },
+    {
+     "date": "2021-01-08",
+     "value": 0.6166
+    },
+    {
+     "date": "2021-01-15",
+     "value": 0.6132
+    },
+    {
+     "date": "2021-01-22",
+     "value": 0.6098
+    },
+    {
+     "date": "2021-01-29",
+     "value": 0.6064
+    },
+    {
+     "date": "2021-02-05",
+     "value": 0.603
+    },
+    {
+     "date": "2021-02-12",
+     "value": 0.5996
+    },
+    {
+     "date": "2021-02-19",
+     "value": 0.5962
+    },
+    {
+     "date": "2021-02-26",
+     "value": 0.5928
+    },
+    {
+     "date": "2021-03-05",
+     "value": 0.5894
+    },
+    {
+     "date": "2021-03-12",
+     "value": 0.586
+    },
+    {
+     "date": "2021-03-19",
+     "value": 0.5826
+    },
+    {
+     "date": "2021-03-26",
+     "value": 0.5791
+    },
+    {
+     "date": "2021-04-02",
+     "value": 0.5757
+    },
+    {
+     "date": "2021-04-09",
+     "value": 0.5723
+    },
+    {
+     "date": "2021-04-16",
+     "value": 0.5689
+    },
+    {
+     "date": "2021-04-23",
+     "value": 0.5655
+    },
+    {
+     "date": "2021-04-30",
+     "value": 0.5621
+    },
+    {
+     "date": "2021-05-07",
+     "value": 0.5587
+    },
+    {
+     "date": "2021-05-14",
+     "value": 0.5553
+    },
+    {
+     "date": "2021-05-21",
+     "value": 0.5519
+    },
+    {
+     "date": "2021-05-28",
+     "value": 0.5485
+    },
+    {
+     "date": "2021-06-04",
+     "value": 0.5451
+    },
+    {
+     "date": "2021-06-11",
+     "value": 0.5417
+    },
+    {
+     "date": "2021-06-18",
+     "value": 0.5383
+    },
+    {
+     "date": "2021-06-25",
+     "value": 0.5349
+    },
+    {
+     "date": "2021-07-02",
+     "value": 0.5315
+    },
+    {
+     "date": "2021-07-09",
+     "value": 0.5281
+    },
+    {
+     "date": "2021-07-16",
+     "value": 0.5247
+    },
+    {
+     "date": "2021-07-23",
+     "value": 0.5213
+    },
+    {
+     "date": "2021-07-30",
+     "value": 0.5179
+    },
+    {
+     "date": "2021-08-06",
+     "value": 0.5145
+    },
+    {
+     "date": "2021-08-13",
+     "value": 0.5111
+    },
+    {
+     "date": "2021-08-20",
+     "value": 0.5077
+    },
+    {
+     "date": "2021-08-27",
+     "value": 0.5043
+    },
+    {
+     "date": "2021-09-03",
+     "value": 0.5009
+    },
+    {
+     "date": "2021-09-10",
+     "value": 0.4974
+    },
+    {
+     "date": "2021-09-17",
+     "value": 0.494
+    },
+    {
+     "date": "2021-09-24",
+     "value": 0.4906
+    },
+    {
+     "date": "2021-10-01",
+     "value": 0.4872
+    },
+    {
+     "date": "2021-10-08",
+     "value": 0.4838
+    },
+    {
+     "date": "2021-10-15",
+     "value": 0.4804
+    },
+    {
+     "date": "2021-10-22",
+     "value": 0.477
+    },
+    {
+     "date": "2021-10-29",
+     "value": 0.4736
+    },
+    {
+     "date": "2021-11-05",
+     "value": 0.4702
+    },
+    {
+     "date": "2021-11-12",
+     "value": 0.4668
+    },
+    {
+     "date": "2021-11-19",
+     "value": 0.4634
+    },
+    {
+     "date": "2021-11-26",
+     "value": 0.46
+    }
+   ],
+   "tags": [
+    "deforestation",
+    "amazon",
+    "forest"
+   ],
+   "license": "Demo simulated data — NOT real satellite imagery",
+   "acquisition_time": "22:40 UTC",
+   "created_at": "2026-09-04T09:11:10.067011+00:00",
+   "updated_at": "2026-09-04T09:11:10.070983+00:00"
+  },
+  "ds_demo_optical_california_fire": {
+   "id": "ds_demo_optical_california_fire",
+   "name": "California Wildfire Burn Scar (Optical)",
+   "provider_id": "demo_optical",
+   "provider_label": "Demo Optical · simulated Sentinel-2 MSI",
+   "data_type": "Optical",
+   "phenomenons": [
+    "wildfire"
+   ],
+   "location": {
+    "name": "California",
+    "country": "USA",
+    "bbox": {
+     "min_lng": -122.8,
+     "min_lat": 37.0,
+     "max_lng": -121.0,
+     "max_lat": 39.5
+    }
+   },
+   "bbox": {
+    "min_lng": -122.8,
+    "min_lat": 37.0,
+    "max_lng": -121.0,
+    "max_lat": 39.5
+   },
+   "source": "DEMO",
+   "simulated": true,
+   "satellite": "Sentinel-2 MSI (simulated)",
+   "resolution": "10 m",
+   "temporal": {
+    "start": "2023-07-01",
+    "end": "2023-09-15",
+    "count": 12
+   },
+   "description": "Simulated burn-scar index (dNBR-like) rasters over northern California wildfires in August 2023.",
+   "grid": {
+    "res_deg": 0.03,
+    "seed": 214
+   },
+   "series": [
+    {
+     "date": "2023-07-01",
+     "value": 0.0519
+    },
+    {
+     "date": "2023-07-08",
+     "value": 0.1086
+    },
+    {
+     "date": "2023-07-15",
+     "value": 0.0841
+    },
+    {
+     "date": "2023-07-22",
+     "value": 0.1477
+    },
+    {
+     "date": "2023-07-29",
+     "value": 0.3901
+    },
+    {
+     "date": "2023-08-05",
+     "value": 0.5996
+    },
+    {
+     "date": "2023-08-12",
+     "value": 0.6164
+    },
+    {
+     "date": "2023-08-19",
+     "value": 0.5316
+    },
+    {
+     "date": "2023-08-26",
+     "value": 0.4076
+    },
+    {
+     "date": "2023-09-02",
+     "value": 0.2112
+    },
+    {
+     "date": "2023-09-09",
+     "value": 0.0502
+    },
+    {
+     "date": "2023-09-16",
+     "value": 0.0538
+    }
+   ],
+   "tags": [
+    "wildfire",
+    "burn scar",
+    "california",
+    "2023"
+   ],
+   "license": "Demo simulated data — NOT real satellite imagery",
+   "acquisition_time": "18:20 UTC",
+   "created_at": "2026-09-04T09:11:10.067076+00:00",
+   "updated_at": "2026-09-04T09:11:10.075500+00:00"
+  },
+  "ds_demo_optical_punjab_crop": {
+   "id": "ds_demo_optical_punjab_crop",
+   "name": "Punjab Crop Health & Classification (Optical)",
+   "provider_id": "demo_optical",
+   "provider_label": "Demo Optical · simulated Sentinel-2 NDVI",
+   "data_type": "Optical",
+   "phenomenons": [
+    "crop"
+   ],
+   "location": {
+    "name": "Punjab",
+    "country": "India",
+    "bbox": {
+     "min_lng": 74.2,
+     "min_lat": 30.0,
+     "max_lng": 76.5,
+     "max_lat": 32.3
+    }
+   },
+   "bbox": {
+    "min_lng": 74.2,
+    "min_lat": 30.0,
+    "max_lng": 76.5,
+    "max_lat": 32.3
+   },
+   "source": "DEMO",
+   "simulated": true,
+   "satellite": "Sentinel-2 MSI (simulated)",
+   "resolution": "10 m",
+   "temporal": {
+    "start": "2023-03-01",
+    "end": "2023-11-15",
+    "count": 20
+   },
+   "description": "Simulated NDVI time series and crop-type classification for the Punjab wheat/paddy belt.",
+   "grid": {
+    "res_deg": 0.02,
+    "seed": 512
+   },
+   "series": [
+    {
+     "date": "2023-03-01",
+     "value": 0.2516
+    },
+    {
+     "date": "2023-03-08",
+     "value": 0.2988
+    },
+    {
+     "date": "2023-03-15",
+     "value": 0.2784
+    },
+    {
+     "date": "2023-03-22",
+     "value": 0.3314
+    },
+    {
+     "date": "2023-03-29",
+     "value": 0.5334
+    },
+    {
+     "date": "2023-04-05",
+     "value": 0.708
+    },
+    {
+     "date": "2023-04-12",
+     "value": 0.722
+    },
+    {
+     "date": "2023-04-19",
+     "value": 0.6513
+    },
+    {
+     "date": "2023-04-26",
+     "value": 0.548
+    },
+    {
+     "date": "2023-05-03",
+     "value": 0.3843
+    },
+    {
+     "date": "2023-05-10",
+     "value": 0.2502
+    },
+    {
+     "date": "2023-05-17",
+     "value": 0.2532
+    },
+    {
+     "date": "2023-05-24",
+     "value": 0.2916
+    },
+    {
+     "date": "2023-05-31",
+     "value": 0.2459
+    },
+    {
+     "date": "2023-06-07",
+     "value": 0.2111
+    },
+    {
+     "date": "2023-06-14",
+     "value": 0.2644
+    },
+    {
+     "date": "2023-06-21",
+     "value": 0.2852
+    },
+    {
+     "date": "2023-06-28",
+     "value": 0.2266
+    },
+    {
+     "date": "2023-07-05",
+     "value": 0.2209
+    },
+    {
+     "date": "2023-07-12",
+     "value": 0.2809
+    }
+   ],
+   "tags": [
+    "crop",
+    "ndvi",
+    "punjab",
+    "agriculture"
+   ],
+   "license": "Demo simulated data — NOT real satellite imagery",
+   "acquisition_time": "05:45 UTC",
+   "created_at": "2026-09-04T09:11:10.067135+00:00",
+   "updated_at": "2026-09-04T09:11:10.077669+00:00"
+  },
+  "ds_demo_dem_uttarakhand": {
+   "id": "ds_demo_dem_uttarakhand",
+   "name": "Uttarakhand Terrain Elevation (DEM)",
+   "provider_id": "demo_dem",
+   "provider_label": "Demo DEM · simulated SRTM 30m",
+   "data_type": "DEM",
+   "phenomenons": [
+    "landslide",
+    "snow"
+   ],
+   "location": {
+    "name": "Uttarakhand",
+    "country": "India",
+    "bbox": {
+     "min_lng": 78.0,
+     "min_lat": 29.5,
+     "max_lng": 80.8,
+     "max_lat": 31.2
+    }
+   },
+   "bbox": {
+    "min_lng": 78.0,
+    "min_lat": 29.5,
+    "max_lng": 80.8,
+    "max_lat": 31.2
+   },
+   "source": "DEMO",
+   "simulated": true,
+   "satellite": "SRTM (simulated)",
+   "resolution": "30 m",
+   "temporal": {
+    "start": "2000-02-11",
+    "end": "2000-02-22",
+    "count": 1
+   },
+   "description": "Simulated digital elevation model over the Garhwal Himalaya with derived slope grids.",
+   "grid": {
+    "res_deg": 0.008,
+    "seed": 334
+   },
+   "z_range_m": [
+    90,
+    4800
+   ],
+   "series": [],
+   "tags": [
+    "dem",
+    "elevation",
+    "himalaya",
+    "terrain"
+   ],
+   "license": "Demo simulated data — NOT real elevation survey",
+   "created_at": "2026-09-04T09:11:10.067209+00:00",
+   "updated_at": "2026-09-04T09:11:10.079967+00:00"
+  },
+  "ds_demo_optical_bengaluru_urban": {
+   "id": "ds_demo_optical_bengaluru_urban",
+   "name": "Bengaluru Urban Expansion (Optical)",
+   "provider_id": "demo_optical",
+   "provider_label": "Demo Optical · simulated Landsat",
+   "data_type": "Optical",
+   "phenomenons": [
+    "urban_growth"
+   ],
+   "location": {
+    "name": "Bengaluru",
+    "country": "India",
+    "bbox": {
+     "min_lng": 77.3,
+     "min_lat": 12.7,
+     "max_lng": 77.9,
+     "max_lat": 13.3
+    }
+   },
+   "bbox": {
+    "min_lng": 77.3,
+    "min_lat": 12.7,
+    "max_lng": 77.9,
+    "max_lat": 13.3
+   },
+   "source": "DEMO",
+   "simulated": true,
+   "satellite": "Landsat-8/9 OLI (simulated)",
+   "resolution": "30 m",
+   "temporal": {
+    "start": "2015-01-01",
+    "end": "2024-12-31",
+    "count": 40
+   },
+   "description": "Simulated built-up area fraction grids showing urban sprawl around Bengaluru from 2015 to 2024.",
+   "grid": {
+    "res_deg": 0.01,
+    "seed": 808
+   },
+   "series": [
+    {
+     "date": "2015-01-01",
+     "value": 0.22
+    },
+    {
+     "date": "2015-01-08",
+     "value": 0.2267
+    },
+    {
+     "date": "2015-01-15",
+     "value": 0.2333
+    },
+    {
+     "date": "2015-01-22",
+     "value": 0.24
+    },
+    {
+     "date": "2015-01-29",
+     "value": 0.2467
+    },
+    {
+     "date": "2015-02-05",
+     "value": 0.2533
+    },
+    {
+     "date": "2015-02-12",
+     "value": 0.26
+    },
+    {
+     "date": "2015-02-19",
+     "value": 0.2667
+    },
+    {
+     "date": "2015-02-26",
+     "value": 0.2733
+    },
+    {
+     "date": "2015-03-05",
+     "value": 0.28
+    },
+    {
+     "date": "2015-03-12",
+     "value": 0.2867
+    },
+    {
+     "date": "2015-03-19",
+     "value": 0.2933
+    },
+    {
+     "date": "2015-03-26",
+     "value": 0.3
+    },
+    {
+     "date": "2015-04-02",
+     "value": 0.3067
+    },
+    {
+     "date": "2015-04-09",
+     "value": 0.3133
+    },
+    {
+     "date": "2015-04-16",
+     "value": 0.32
+    },
+    {
+     "date": "2015-04-23",
+     "value": 0.3267
+    },
+    {
+     "date": "2015-04-30",
+     "value": 0.3333
+    },
+    {
+     "date": "2015-05-07",
+     "value": 0.34
+    },
+    {
+     "date": "2015-05-14",
+     "value": 0.3467
+    },
+    {
+     "date": "2015-05-21",
+     "value": 0.3533
+    },
+    {
+     "date": "2015-05-28",
+     "value": 0.36
+    },
+    {
+     "date": "2015-06-04",
+     "value": 0.3667
+    },
+    {
+     "date": "2015-06-11",
+     "value": 0.3733
+    },
+    {
+     "date": "2015-06-18",
+     "value": 0.38
+    },
+    {
+     "date": "2015-06-25",
+     "value": 0.3867
+    },
+    {
+     "date": "2015-07-02",
+     "value": 0.3933
+    },
+    {
+     "date": "2015-07-09",
+     "value": 0.4
+    },
+    {
+     "date": "2015-07-16",
+     "value": 0.4067
+    },
+    {
+     "date": "2015-07-23",
+     "value": 0.4133
+    },
+    {
+     "date": "2015-07-30",
+     "value": 0.42
+    },
+    {
+     "date": "2015-08-06",
+     "value": 0.4267
+    },
+    {
+     "date": "2015-08-13",
+     "value": 0.4333
+    },
+    {
+     "date": "2015-08-20",
+     "value": 0.44
+    },
+    {
+     "date": "2015-08-27",
+     "value": 0.4467
+    },
+    {
+     "date": "2015-09-03",
+     "value": 0.4533
+    },
+    {
+     "date": "2015-09-10",
+     "value": 0.46
+    },
+    {
+     "date": "2015-09-17",
+     "value": 0.4667
+    },
+    {
+     "date": "2015-09-24",
+     "value": 0.4733
+    },
+    {
+     "date": "2015-10-01",
+     "value": 0.48
+    }
+   ],
+   "tags": [
+    "urban",
+    "land use",
+    "bengaluru",
+    "sprawl"
+   ],
+   "license": "Demo simulated data — NOT real satellite imagery",
+   "created_at": "2026-09-04T09:11:10.067394+00:00",
+   "updated_at": "2026-09-04T09:11:10.082480+00:00"
+  },
+  "ds_demo_time_lst_gujarat": {
+   "id": "ds_demo_time_lst_gujarat",
+   "name": "Gujarat Land Surface Temperature (Time-Series)",
+   "provider_id": "demo_temporal",
+   "provider_label": "Demo Tabular · simulated MODIS LST",
+   "data_type": "Time-Series",
+   "phenomenons": [
+    "drought"
+   ],
+   "location": {
+    "name": "Gujarat",
+    "country": "India",
+    "bbox": {
+     "min_lng": 68.1,
+     "min_lat": 20.0,
+     "max_lng": 74.5,
+     "max_lat": 24.7
+    }
+   },
+   "bbox": {
+    "min_lng": 68.1,
+    "min_lat": 20.0,
+    "max_lng": 74.5,
+    "max_lat": 24.7
+   },
+   "source": "DEMO",
+   "simulated": true,
+   "satellite": "MODIS LST (simulated)",
+   "resolution": "1 km",
+   "temporal": {
+    "start": "2020-01-01",
+    "end": "2024-12-01",
+    "count": 60
+   },
+   "description": "Simulated monthly land surface temperature index (deg C anomaly) for drought monitoring in Gujarat.",
+   "grid": {
+    "res_deg": 0.1,
+    "seed": 221
+   },
+   "series": [
+    {
+     "date": "2020-01-01",
+     "value": 0.5
+    },
+    {
+     "date": "2020-02-01",
+     "value": 0.5934
+    },
+    {
+     "date": "2020-03-01",
+     "value": 0.6627
+    },
+    {
+     "date": "2020-04-01",
+     "value": 0.6902
+    },
+    {
+     "date": "2020-05-01",
+     "value": 0.6694
+    },
+    {
+     "date": "2020-06-01",
+     "value": 0.6069
+    },
+    {
+     "date": "2020-07-01",
+     "value": 0.5203
+    },
+    {
+     "date": "2020-08-01",
+     "value": 0.4337
+    },
+    {
+     "date": "2020-09-01",
+     "value": 0.3712
+    },
+    {
+     "date": "2020-10-01",
+     "value": 0.3505
+    },
+    {
+     "date": "2020-11-01",
+     "value": 0.378
+    },
+    {
+     "date": "2020-12-01",
+     "value": 0.4473
+    },
+    {
+     "date": "2021-01-01",
+     "value": 0.5407
+    },
+    {
+     "date": "2021-02-01",
+     "value": 0.6341
+    },
+    {
+     "date": "2021-03-01",
+     "value": 0.7033
+    },
+    {
+     "date": "2021-04-01",
+     "value": 0.7308
+    },
+    {
+     "date": "2021-05-01",
+     "value": 0.7101
+    },
+    {
+     "date": "2021-06-01",
+     "value": 0.6476
+    },
+    {
+     "date": "2021-07-01",
+     "value": 0.561
+    },
+    {
+     "date": "2021-08-01",
+     "value": 0.4744
+    },
+    {
+     "date": "2021-09-01",
+     "value": 0.4119
+    },
+    {
+     "date": "2021-10-01",
+     "value": 0.3912
+    },
+    {
+     "date": "2021-11-01",
+     "value": 0.4187
+    },
+    {
+     "date": "2021-12-01",
+     "value": 0.488
+    },
+    {
+     "date": "2022-01-01",
+     "value": 0.5814
+    },
+    {
+     "date": "2022-02-01",
+     "value": 0.6747
+    },
+    {
+     "date": "2022-03-01",
+     "value": 0.744
+    },
+    {
+     "date": "2022-04-01",
+     "value": 0.7715
+    },
+    {
+     "date": "2022-05-01",
+     "value": 0.7508
+    },
+    {
+     "date": "2022-06-01",
+     "value": 0.6883
+    },
+    {
+     "date": "2022-07-01",
+     "value": 0.6017
+    },
+    {
+     "date": "2022-08-01",
+     "value": 0.5151
+    },
+    {
+     "date": "2022-09-01",
+     "value": 0.4526
+    },
+    {
+     "date": "2022-10-01",
+     "value": 0.4319
+    },
+    {
+     "date": "2022-11-01",
+     "value": 0.4594
+    },
+    {
+     "date": "2022-12-01",
+     "value": 0.5286
+    },
+    {
+     "date": "2023-01-01",
+     "value": 0.622
+    },
+    {
+     "date": "2023-02-01",
+     "value": 0.7154
+    },
+    {
+     "date": "2023-03-01",
+     "value": 0.7847
+    },
+    {
+     "date": "2023-04-01",
+     "value": 0.8122
+    },
+    {
+     "date": "2023-05-01",
+     "value": 0.7915
+    },
+    {
+     "date": "2023-06-01",
+     "value": 0.729
+    },
+    {
+     "date": "2023-07-01",
+     "value": 0.6424
+    },
+    {
+     "date": "2023-08-01",
+     "value": 0.5558
+    },
+    {
+     "date": "2023-09-01",
+     "value": 0.4933
+    },
+    {
+     "date": "2023-10-01",
+     "value": 0.4725
+    },
+    {
+     "date": "2023-11-01",
+     "value": 0.5
+    },
+    {
+     "date": "2023-12-01",
+     "value": 0.5693
+    },
+    {
+     "date": "2024-01-01",
+     "value": 0.6627
+    },
+    {
+     "date": "2024-02-01",
+     "value": 0.7561
+    },
+    {
+     "date": "2024-03-01",
+     "value": 0.8254
+    },
+    {
+     "date": "2024-04-01",
+     "value": 0.8529
+    },
+    {
+     "date": "2024-05-01",
+     "value": 0.8322
+    },
+    {
+     "date": "2024-06-01",
+     "value": 0.7697
+    },
+    {
+     "date": "2024-07-01",
+     "value": 0.6831
+    },
+    {
+     "date": "2024-08-01",
+     "value": 0.5964
+    },
+    {
+     "date": "2024-09-01",
+     "value": 0.5339
+    },
+    {
+     "date": "2024-10-01",
+     "value": 0.5132
+    },
+    {
+     "date": "2024-11-01",
+     "value": 0.5407
+    },
+    {
+     "date": "2024-12-01",
+     "value": 0.61
+    }
+   ],
+   "tags": [
+    "temperature",
+    "drought",
+    "gujarat",
+    "climate"
+   ],
+   "license": "Demo simulated data — NOT real climate records",
+   "created_at": "2026-09-04T09:11:10.067751+00:00",
+   "updated_at": "2026-09-04T09:11:10.084245+00:00"
+  },
+  "ds_demo_vector_districts_india": {
+   "id": "ds_demo_vector_districts_india",
+   "name": "India District Boundaries (Vector)",
+   "provider_id": "demo_vector",
+   "provider_label": "Demo Vector · administrative units",
+   "data_type": "Vector",
+   "phenomenons": [],
+   "location": {
+    "name": "India",
+    "country": "India",
+    "bbox": {
+     "min_lng": 67.5,
+     "min_lat": 6.5,
+     "max_lng": 97.5,
+     "max_lat": 36.0
+    }
+   },
+   "bbox": {
+    "min_lng": 67.5,
+    "min_lat": 6.5,
+    "max_lng": 97.5,
+    "max_lat": 36.0
+   },
+   "source": "DEMO",
+   "simulated": true,
+   "satellite": "Admin boundaries (simulated)",
+   "resolution": "1:250k",
+   "temporal": {
+    "start": "2024-01-01",
+    "end": "2024-12-31",
+    "count": 1
+   },
+   "description": "Simplified simulated district polygons useful for zonal statistics and map context.",
+   "grid": {
+    "res_deg": 0.5,
+    "seed": 151
+   },
+   "series": [],
+   "tags": [
+    "vector",
+    "boundaries",
+    "administration"
+   ],
+   "license": "Demo simulated data — NOT official boundaries",
+   "created_at": "2026-09-04T09:11:10.067833+00:00",
+   "updated_at": "2026-09-04T09:11:10.086650+00:00"
+  },
+  "ds_demo_tabular_rainfall_india": {
+   "id": "ds_demo_tabular_rainfall_india",
+   "name": "District Rainfall Records 2019-2024 (Tabular)",
+   "provider_id": "demo_tabular",
+   "provider_label": "Demo Tabular · rain-gauge statistics",
+   "data_type": "Tabular",
+   "phenomenons": [
+    "flood",
+    "drought"
+   ],
+   "location": {
+    "name": "India",
+    "country": "India",
+    "bbox": {
+     "min_lng": 67.5,
+     "min_lat": 6.5,
+     "max_lng": 97.5,
+     "max_lat": 36.0
+    }
+   },
+   "bbox": {
+    "min_lng": 67.5,
+    "min_lat": 6.5,
+    "max_lng": 97.5,
+    "max_lat": 36.0
+   },
+   "source": "DEMO",
+   "simulated": true,
+   "satellite": "Rain-gauge network (simulated)",
+   "resolution": "district",
+   "temporal": {
+    "start": "2019-01-01",
+    "end": "2024-12-01",
+    "count": 72
+   },
+   "description": "Simulated monthly district rainfall (mm) used to contextualise flood triggers.",
+   "grid": {
+    "res_deg": 0.5,
+    "seed": 93
+   },
+   "series": [
+    {
+     "date": "2019-01-01",
+     "value": 90.0
+    },
+    {
+     "date": "2019-02-01",
+     "value": 150.0704
+    },
+    {
+     "date": "2019-03-01",
+     "value": 194.0638
+    },
+    {
+     "date": "2019-04-01",
+     "value": 210.2113
+    },
+    {
+     "date": "2019-05-01",
+     "value": 194.2048
+    },
+    {
+     "date": "2019-06-01",
+     "value": 150.3523
+    },
+    {
+     "date": "2019-07-01",
+     "value": 90.4229
+    },
+    {
+     "date": "2019-08-01",
+     "value": 30.4933
+    },
+    {
+     "date": "2019-09-01",
+     "value": 0.0
+    },
+    {
+     "date": "2019-10-01",
+     "value": 0.0
+    },
+    {
+     "date": "2019-11-01",
+     "value": 0.0
+    },
+    {
+     "date": "2019-12-01",
+     "value": 30.7741
+    },
+    {
+     "date": "2020-01-01",
+     "value": 90.8444
+    },
+    {
+     "date": "2020-02-01",
+     "value": 150.9149
+    },
+    {
+     "date": "2020-03-01",
+     "value": 194.9086
+    },
+    {
+     "date": "2020-04-01",
+     "value": 211.0563
+    },
+    {
+     "date": "2020-05-01",
+     "value": 195.0502
+    },
+    {
+     "date": "2020-06-01",
+     "value": 151.198
+    },
+    {
+     "date": "2020-07-01",
+     "value": 91.2686
+    },
+    {
+     "date": "2020-08-01",
+     "value": 31.3389
+    },
+    {
+     "date": "2020-09-01",
+     "value": 0.0
+    },
+    {
+     "date": "2020-10-01",
+     "value": 0.0
+    },
+    {
+     "date": "2020-11-01",
+     "value": 0.0
+    },
+    {
+     "date": "2020-12-01",
+     "value": 31.6187
+    },
+    {
+     "date": "2021-01-01",
+     "value": 91.6889
+    },
+    {
+     "date": "2021-02-01",
+     "value": 151.7594
+    },
+    {
+     "date": "2021-03-01",
+     "value": 195.7533
+    },
+    {
+     "date": "2021-04-01",
+     "value": 211.9014
+    },
+    {
+     "date": "2021-05-01",
+     "value": 195.8956
+    },
+    {
+     "date": "2021-06-01",
+     "value": 152.0436
+    },
+    {
+     "date": "2021-07-01",
+     "value": 92.1143
+    },
+    {
+     "date": "2021-08-01",
+     "value": 32.1845
+    },
+    {
+     "date": "2021-09-01",
+     "value": 0.0
+    },
+    {
+     "date": "2021-10-01",
+     "value": 0.0
+    },
+    {
+     "date": "2021-11-01",
+     "value": 0.0
+    },
+    {
+     "date": "2021-12-01",
+     "value": 32.4632
+    },
+    {
+     "date": "2022-01-01",
+     "value": 92.5333
+    },
+    {
+     "date": "2022-02-01",
+     "value": 152.6039
+    },
+    {
+     "date": "2022-03-01",
+     "value": 196.5981
+    },
+    {
+     "date": "2022-04-01",
+     "value": 212.7465
+    },
+    {
+     "date": "2022-05-01",
+     "value": 196.741
+    },
+    {
+     "date": "2022-06-01",
+     "value": 152.8892
+    },
+    {
+     "date": "2022-07-01",
+     "value": 92.96
+    },
+    {
+     "date": "2022-08-01",
+     "value": 33.0301
+    },
+    {
+     "date": "2022-09-01",
+     "value": 0.0
+    },
+    {
+     "date": "2022-10-01",
+     "value": 0.0
+    },
+    {
+     "date": "2022-11-01",
+     "value": 0.0
+    },
+    {
+     "date": "2022-12-01",
+     "value": 33.3077
+    },
+    {
+     "date": "2023-01-01",
+     "value": 93.3777
+    },
+    {
+     "date": "2023-02-01",
+     "value": 153.4485
+    },
+    {
+     "date": "2023-03-01",
+     "value": 197.4428
+    },
+    {
+     "date": "2023-04-01",
+     "value": 213.5915
+    },
+    {
+     "date": "2023-05-01",
+     "value": 197.5864
+    },
+    {
+     "date": "2023-06-01",
+     "value": 153.7348
+    },
+    {
+     "date": "2023-07-01",
+     "value": 93.8057
+    },
+    {
+     "date": "2023-08-01",
+     "value": 33.8758
+    },
+    {
+     "date": "2023-09-01",
+     "value": 0.0
+    },
+    {
+     "date": "2023-10-01",
+     "value": 0.0
+    },
+    {
+     "date": "2023-11-01",
+     "value": 0.0
+    },
+    {
+     "date": "2023-12-01",
+     "value": 34.1522
+    },
+    {
+     "date": "2024-01-01",
+     "value": 94.2222
+    },
+    {
+     "date": "2024-02-01",
+     "value": 154.293
+    },
+    {
+     "date": "2024-03-01",
+     "value": 198.2876
+    },
+    {
+     "date": "2024-04-01",
+     "value": 214.4366
+    },
+    {
+     "date": "2024-05-01",
+     "value": 198.4318
+    },
+    {
+     "date": "2024-06-01",
+     "value": 154.5805
+    },
+    {
+     "date": "2024-07-01",
+     "value": 94.6514
+    },
+    {
+     "date": "2024-08-01",
+     "value": 34.7214
+    },
+    {
+     "date": "2024-09-01",
+     "value": 0.0
+    },
+    {
+     "date": "2024-10-01",
+     "value": 0.0
+    },
+    {
+     "date": "2024-11-01",
+     "value": 0.0
+    },
+    {
+     "date": "2024-12-01",
+     "value": 34.9967
+    }
+   ],
+   "tags": [
+    "rainfall",
+    "tabular",
+    "monsoon"
+   ],
+   "license": "Demo simulated data — NOT official IMD records",
+   "created_at": "2026-09-04T09:11:10.068232+00:00",
+   "updated_at": "2026-09-04T09:11:10.089108+00:00"
+  },
+  "ds_demo_fusion_kerala_multisource": {
+   "id": "ds_demo_fusion_kerala_multisource",
+   "name": "Kerala Multi-Source Fusion Stack (SAR + Optical + DEM)",
+   "provider_id": "demo_fusion",
+   "provider_label": "Demo Fusion · simulated multi-sensor",
+   "data_type": "Fusion",
+   "phenomenons": [
+    "flood",
+    "cyclone",
+    "landslide"
+   ],
+   "location": {
+    "name": "Kerala",
+    "country": "India",
+    "bbox": {
+     "min_lng": 74.8,
+     "min_lat": 8.0,
+     "max_lng": 77.6,
+     "max_lat": 12.8
+    }
+   },
+   "bbox": {
+    "min_lng": 74.8,
+    "min_lat": 8.0,
+    "max_lng": 77.6,
+    "max_lat": 12.8
+   },
+   "source": "DEMO",
+   "simulated": true,
+   "satellite": "Sentinel-1/Sentinel-2/SRTM (simulated)",
+   "resolution": "10 m",
+   "temporal": {
+    "start": "2024-06-01",
+    "end": "2024-09-30",
+    "count": 18
+   },
+   "description": "Co-registered simulated SAR water + optical NDWI + DEM drainage layers for fusion experiments over Kerala.",
+   "grid": {
+    "res_deg": 0.02,
+    "seed": 538
+   },
+   "layers": [
+    "sar_water",
+    "optical_ndwi",
+    "dem_lowland"
+   ],
+   "series": [
+    {
+     "date": "2024-06-01",
+     "value": 0.07
+    },
+    {
+     "date": "2024-06-08",
+     "value": 0.1176
+    },
+    {
+     "date": "2024-06-15",
+     "value": 0.0578
+    },
+    {
+     "date": "2024-06-22",
+     "value": 0.0258
+    },
+    {
+     "date": "2024-06-29",
+     "value": 0.0956
+    },
+    {
+     "date": "2024-07-06",
+     "value": 0.1193
+    },
+    {
+     "date": "2024-07-13",
+     "value": 0.0828
+    },
+    {
+     "date": "2024-07-20",
+     "value": 0.1825
+    },
+    {
+     "date": "2024-07-27",
+     "value": 0.4276
+    },
+    {
+     "date": "2024-08-03",
+     "value": 0.6003
+    },
+    {
+     "date": "2024-08-10",
+     "value": 0.6239
+    },
+    {
+     "date": "2024-08-17",
+     "value": 0.5741
+    },
+    {
+     "date": "2024-08-24",
+     "value": 0.4344
+    },
+    {
+     "date": "2024-08-31",
+     "value": 0.2069
+    },
+    {
+     "date": "2024-09-07",
+     "value": 0.0697
+    },
+    {
+     "date": "2024-09-14",
+     "value": 0.0982
+    },
+    {
+     "date": "2024-09-21",
+     "value": 0.1141
+    },
+    {
+     "date": "2024-09-28",
+     "value": 0.0421
+    }
+   ],
+   "tags": [
+    "fusion",
+    "flood",
+    "kerala",
+    "multi-sensor"
+   ],
+   "license": "Demo simulated data — NOT real satellite imagery",
+   "created_at": "2026-09-04T09:11:10.068296+00:00",
+   "updated_at": "2026-09-04T09:11:10.091458+00:00"
+  },
+  "ds_demo_sar_myanmar_cyclone": {
+   "id": "ds_demo_sar_myanmar_cyclone",
+   "name": "Myanmar Cyclone Mocha Flood Extent (SAR)",
+   "provider_id": "demo_sar",
+   "provider_label": "Demo SAR · simulated Sentinel-1",
+   "data_type": "SAR",
+   "phenomenons": [
+    "cyclone"
+   ],
+   "location": {
+    "name": "Myanmar",
+    "country": "Myanmar",
+    "bbox": {
+     "min_lng": 92.5,
+     "min_lat": 15.0,
+     "max_lng": 95.5,
+     "max_lat": 18.0
+    }
+   },
+   "bbox": {
+    "min_lng": 92.5,
+    "min_lat": 15.0,
+    "max_lng": 95.5,
+    "max_lat": 18.0
+   },
+   "source": "DEMO",
+   "simulated": true,
+   "satellite": "Sentinel-1 C-SAR (simulated)",
+   "resolution": "10 m",
+   "temporal": {
+    "start": "2023-05-10",
+    "end": "2023-06-15",
+    "count": 6
+   },
+   "description": "Simulated flood-water mask in Rakhine (Myanmar) after Cyclone Mocha 2023.",
+   "grid": {
+    "res_deg": 0.02,
+    "seed": 411
+   },
+   "series": [
+    {
+     "date": "2023-05-10",
+     "value": 0.1785
+    },
+    {
+     "date": "2023-05-17",
+     "value": 0.3633
+    },
+    {
+     "date": "2023-05-24",
+     "value": 0.4759
+    },
+    {
+     "date": "2023-05-31",
+     "value": 0.523
+    },
+    {
+     "date": "2023-06-07",
+     "value": 0.5058
+    },
+    {
+     "date": "2023-06-14",
+     "value": 0.3556
+    }
+   ],
+   "tags": [
+    "cyclone",
+    "flood",
+    "myanmar",
+    "mocha"
+   ],
+   "license": "Demo simulated data — NOT real satellite imagery",
+   "created_at": "2026-09-04T09:11:10.068338+00:00",
+   "updated_at": "2026-09-04T09:11:10.093519+00:00"
+  }
+ },
+ "jobs": {},
+ "results": {},
+ "saved_analyses": {},
+ "settings": {},
+ "sessions": {
+  "0b82c2025c26426d8922677648caed6c": {
+   "user_id": "efed908eebac48dfa367317b05f20088",
+   "refresh_jti": "e95452710dc229349b289d1456b421e9",
+   "revoked": false,
+   "created_at": "2026-09-04T09:11:12.719428+00:00",
+   "expires_at": "2026-10-04T09:11:12.719421+00:00",
+   "id": "0b82c2025c26426d8922677648caed6c",
+   "updated_at": "2026-09-04T09:11:12.719501+00:00"
+  },
+  "2384df4fba3645f997e7fc99bf1a6156": {
+   "user_id": "efed908eebac48dfa367317b05f20088",
+   "refresh_jti": "6b1959ed79536e88e767f7448f6bfbac",
+   "revoked": false,
+   "created_at": "2026-09-04T09:11:12.886865+00:00",
+   "expires_at": "2026-10-04T09:11:12.886857+00:00",
+   "id": "2384df4fba3645f997e7fc99bf1a6156",
+   "updated_at": "2026-09-04T09:11:12.886931+00:00"
+  },
+  "be2c4c5165f546c18e176d8eff889073": {
+   "user_id": "25845008eeda4c4a8009f43f5104616b",
+   "refresh_jti": "edcb29718c655a4cdc3db29d2f316e21",
+   "revoked": false,
+   "created_at": "2026-09-04T09:11:13.082055+00:00",
+   "expires_at": "2026-10-04T09:11:13.082051+00:00",
+   "id": "be2c4c5165f546c18e176d8eff889073",
+   "updated_at": "2026-09-04T09:11:13.082093+00:00"
+  },
+  "0757d3ea5236480b85df29125ddb0429": {
+   "user_id": "aea4a692cbaa47269d07f006f437c3f8",
+   "refresh_jti": "35109cff11c9261c92f3406648d9d7d4",
+   "revoked": false,
+   "created_at": "2026-09-04T09:11:13.479501+00:00",
+   "expires_at": "2026-10-04T09:11:13.479497+00:00",
+   "id": "0757d3ea5236480b85df29125ddb0429",
+   "updated_at": "2026-09-04T09:11:13.479542+00:00"
+  },
+  "8c948d3e4c894311804e73bd29b26382": {
+   "user_id": "aea4a692cbaa47269d07f006f437c3f8",
+   "refresh_jti": "2b187231147338b123f6d5f98683c068",
+   "revoked": false,
+   "created_at": "2026-09-04T09:11:13.831939+00:00",
+   "expires_at": "2026-10-04T09:11:13.831934+00:00",
+   "id": "8c948d3e4c894311804e73bd29b26382",
+   "updated_at": "2026-09-04T09:11:13.831988+00:00"
+  },
+  "28029993101147e3aea05008e10016ac": {
+   "user_id": "8d9f50aed4574296a5bbc5d66d864608",
+   "refresh_jti": "96decc0a2c3e06caa92613c09fdc7b9e",
+   "revoked": true,
+   "created_at": "2026-09-04T09:11:14.207552+00:00",
+   "expires_at": "2026-10-04T09:11:14.207549+00:00",
+   "id": "28029993101147e3aea05008e10016ac",
+   "updated_at": "2026-09-04T09:11:14.225862+00:00"
+  },
+  "7b008494f73647548594cf78e556efdd": {
+   "user_id": "76d7a9dcd5e64ba4aa0a8556e525ad8e",
+   "refresh_jti": "ae82aa9d86c6fc8d6070d07eaddfd1db",
+   "revoked": true,
+   "created_at": "2026-09-04T09:11:14.484012+00:00",
+   "expires_at": "2026-10-04T09:11:14.484008+00:00",
+   "id": "7b008494f73647548594cf78e556efdd",
+   "updated_at": "2026-09-04T09:11:14.745992+00:00"
+  },
+  "143b01f6143847b8b6871a5dd7779946": {
+   "user_id": "aea4a692cbaa47269d07f006f437c3f8",
+   "refresh_jti": "194c12d21b1e377ededb92d059753c96",
+   "revoked": false,
+   "created_at": "2026-09-04T09:11:34.079018+00:00",
+   "expires_at": "2026-10-04T09:11:34.079013+00:00",
+   "id": "143b01f6143847b8b6871a5dd7779946",
+   "updated_at": "2026-09-04T09:11:34.079069+00:00"
+  }
+ },
+ "contacts": {}
+}

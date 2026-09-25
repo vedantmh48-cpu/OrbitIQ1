@@ -1,0 +1,100 @@
+services:
+  postgis:
+    image: postgis/postgis:16-3.4
+    container_name: satquery-postgis
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=satquery
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d satquery"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: satquery-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - redis-data:/data
+
+  mongo:
+    image: mongo:7
+    container_name: satquery-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: satquery-backend
+    environment:
+      - DB_MODE=auto
+      - MONGO_URI=mongodb://mongo:27017
+      - MONGO_DB=satquery_dev
+      - AUTH_STORE=auto
+      - POSTGRES_DSN=postgresql://postgres:postgres@postgis:5432/satquery
+      - REDIS_URL=redis://redis:6379/0
+      - REDIS_ENABLED=auto
+      - FRONTEND_ORIGIN=http://localhost:5173
+      - JWT_SECRET=change-me-in-production
+      - DEMO_MODE=auto
+      - HOST=0.0.0.0
+      # E-mail (Gmail SMTP): provide SMTP_USERNAME/SMTP_PASSWORD via the host
+      # environment or a .env file next to docker-compose.yml.
+      - MAIL_ENABLED=${MAIL_ENABLED:-auto}
+      - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USE_STARTTLS=${SMTP_USE_STARTTLS:-true}
+      - SMTP_USE_SSL=${SMTP_USE_SSL:-false}
+      - SMTP_USERNAME=${SMTP_USERNAME:-}
+      - SMTP_PASSWORD=${SMTP_PASSWORD:-}
+      - SMTP_FROM=${SMTP_FROM:-}
+      - SMTP_FROM_NAME=${SMTP_FROM_NAME:-OrbitIQ}
+      - LOGIN_NOTIFICATION_ENABLED=${LOGIN_NOTIFICATION_ENABLED:-true}
+      - APP_PUBLIC_URL=${APP_PUBLIC_URL:-http://localhost:5173}
+    ports:
+      - "8000:8000"
+    depends_on:
+      mongo:
+        condition: service_healthy
+      postgis:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  frontend:
+    image: node:20-slim
+    container_name: satquery-frontend
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    volumes:
+      - ./frontend:/app
+      - frontend-node_modules:/app/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
+  postgis-data:
+  redis-data:
+  frontend-node_modules:
