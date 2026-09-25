@@ -5,7 +5,9 @@ with a .env.example; a local .env is optional (sensible dev defaults are used).
 """
 from __future__ import annotations
 
+import json
 import os
+import re
 from pathlib import Path
 
 try:  # python-dotenv is optional at import time
@@ -30,6 +32,55 @@ def normalize_app_password(raw: str) -> str:
     """Google App Passwords are shown as ``abcd efgh ijkl mnop`` - the spaces
     are cosmetic, so they are stripped before use."""
     return (raw or "").replace(" ", "").replace("\u00a0", "").strip()
+
+
+# Local origins the Vite dev server is reachable on (hostname + IPv4 alias).
+DEV_FRONTEND_ORIGINS = ("http://localhost:5173", "http://127.0.0.1:5173")
+
+# Any separator an operator may realistically paste into a host's variable UI.
+_ORIGIN_SEPARATORS = re.compile(r"[\s,;]+")
+
+# `<project>.vercel.app` - the deployment hostname Vercel assigns a project.
+_VERCEL_ORIGIN = re.compile(r"https://([a-z0-9-]+)\.vercel\.app")
+
+
+def split_origin_list(raw: str) -> list[str]:
+    """Split an origins env value into individual origins.
+
+    Hosting UIs are filled in by hand, so a single URL, a comma-separated list,
+    a whitespace/semicolon-separated list and a JSON array are all accepted::
+
+        https://app.example.com
+        https://app.example.com,https://www.example.com
+        https://app.example.com; https://www.example.com
+        ["https://app.example.com", "https://www.example.com"]
+    """
+    text = (raw or "").strip()
+    if not text:
+        return []
+    if text.startswith("["):
+        try:
+            parsed = json.loads(text)
+        except ValueError:
+            parsed = None
+        if isinstance(parsed, (list, tuple)):
+            return [str(item) for item in parsed]
+    return [part for part in _ORIGIN_SEPARATORS.split(text) if part]
+
+
+def normalize_origin(value: object) -> str:
+    """Return the origin exactly as a browser sends it in the ``Origin`` header.
+
+    Starlette's ``CORSMiddleware`` compares origins with plain string equality,
+    so a stray quote, space or trailing slash in an env value silently rejects
+    every cross-origin request (``OPTIONS`` preflight -> ``400 Disallowed CORS
+    origin``) while direct ``GET`` calls keep working. Browsers never send a
+    trailing slash, so it is removed here.
+    """
+    origin = str(value or "").strip().strip("'\"").strip()
+    if origin.endswith("/"):
+        origin = origin.rstrip("/")
+    return origin
 
 
 class Settings:
@@ -210,13 +261,65 @@ class Settings:
         "GOOGLE_REDIRECT_URI", "http://localhost:8000/api/reports/google/callback"
     )
 
+    # --- CORS -----------------------------------------------------------
+
+    def is_production(self) -> bool:
+        """True when ``ENVIRONMENT`` marks this as a hosted production deploy."""
+        return (self.ENVIRONMENT or "").strip().lower() in ("production", "prod")
+
+    @property
+    def configured_cors_origins(self) -> list[str]:
+        """Origins explicitly configured via FRONTEND_ORIGIN / CORS_ORIGINS.
+
+        Both variables are honoured; ``CORS_ORIGINS`` accepts a single URL, a
+        comma/whitespace/semicolon-separated list or a JSON array, and every
+        value is normalised (quotes, stray spaces and trailing slashes removed)
+        so it matches the browser's ``Origin`` header byte for byte.
+        """
+        origins = {
+            normalize_origin(raw) for raw in split_origin_list(self.FRONTEND_ORIGIN)
+        }
+        for raw in split_origin_list(os.getenv("CORS_ORIGINS", "")):
+            origins.add(normalize_origin(raw))
+        origins.discard("")
+        return sorted(origins)
+
     @property
     def cors_origins(self) -> list[str]:
-        origins = {self.FRONTEND_ORIGIN}
-        for raw in os.getenv("CORS_ORIGINS", "").split(","):
-            if raw.strip():
-                origins.add(raw.strip())
+        """Exact origins allowed to call the API (never ``*``).
+
+        Outside production the Vite dev origins are always allowed, so
+        ``python run.py`` keeps working on http://localhost:5173 and
+        http://127.0.0.1:5173 with no extra configuration.
+        """
+        origins = set(self.configured_cors_origins)
+        if not self.is_production():
+            origins.update(DEV_FRONTEND_ORIGINS)
         return sorted(origins)
+
+    @property
+    def cors_origin_regex(self) -> str | None:
+        """Regex matching Vercel preview deployments of the configured frontend.
+
+        Every Vercel preview build gets its own hostname
+        (``<project>-<hash>-<team>.vercel.app`` or
+        ``<project>-git-<branch>-<team>.vercel.app``), which an exact
+        allow-list can never cover. The pattern is derived from the configured
+        ``*.vercel.app`` origins, so it stays scoped to this project's own
+        hostname prefix instead of becoming a wildcard; set
+        ``CORS_ORIGIN_REGEX`` to override it explicitly.
+        """
+        explicit = os.getenv("CORS_ORIGIN_REGEX", "").strip()
+        if explicit:
+            return explicit
+        projects = {
+            re.escape(match.group(1))
+            for origin in self.configured_cors_origins
+            if (match := _VERCEL_ORIGIN.fullmatch(origin))
+        }
+        if not projects:
+            return None
+        return rf"^https://(?:{'|'.join(sorted(projects))})(?:-[a-z0-9-]+)?\.vercel\.app$"
 
     def demo_enabled(self) -> bool:
         """Whether simulated demo data may be used for a given pipeline."""
