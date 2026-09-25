@@ -58,11 +58,11 @@ export default function Layout({ children }) {
             : "-translate-x-full lg:translate-x-0 lg:w-[248px]"
         } ${theme === "light" ? "!border-slate-300" : "border-space-700"}`}
       >
-        <div className="flex h-16 shrink-0 items-center justify-between border-b px-4">
+        <div className="flex h-[72px] shrink-0 items-center justify-between border-b px-4">
           {collapsed && !mobileOpen ? (
-            <div className="mx-auto py-3"><Logo size={30} withText={false} /></div>
+            <div className="mx-auto py-3"><Logo size={34} withText={false} /></div>
           ) : (
-            <Logo size={30} />
+            <Logo size={36} className="sidebar-brand-logo" />
           )}
           <button className="rounded p-1 text-slate-400 hover:text-accent lg:hidden" onClick={() => setMobileOpen(false)}>
             <X className="h-5 w-5" />
@@ -114,7 +114,7 @@ export default function Layout({ children }) {
 
       {/* main column */}
       <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
-        <header className="flex h-16 shrink-0 items-center justify-between gap-3 border-b bg-space-900/70 px-3 backdrop-blur-xl sm:px-5">
+        <header className="flex h-[72px] shrink-0 items-center justify-between gap-3 border-b bg-space-900/70 px-3 backdrop-blur-xl sm:px-5">
           <div className="flex min-w-0 items-center gap-2">
             <button className="rounded-lg p-2 text-slate-400 hover:bg-space-800 hover:text-accent lg:hidden" onClick={() => setMobileOpen(true)}>
               <Menu className="h-5 w-5" />

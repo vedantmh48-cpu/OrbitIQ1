@@ -120,6 +120,12 @@ Reports embed the logo as a base64 data URI / inline image, so the exported file
 stay self-contained; if the artwork is missing the exports fall back to a
 text-only brand instead of failing.
 
+**Render size matters.** In the artwork the wordmark is only ~35% of the image
+height and the tagline ~7%, so a small render leaves the words unreadable. The
+lockup therefore needs ≥60px on screen (the sidebar renders it at 66px, auth
+screens at 78px) and ≥15mm in PDFs; 24mm also resolves the tagline. `Logo.jsx`
+enforces the 60px floor — keep new placements at or above it.
+
 ## 📦 Project layout
 
 ```
@@ -214,7 +220,16 @@ environment - they are never logged, returned by an API or shown in errors.
 | Sentinel (Copernicus Data Space) | `SENTINEL_CLIENT_ID`, `SENTINEL_CLIENT_SECRET` | catalog search implemented (OData) |
 | USGS Landsat (M2M) | `LANDSAT_API_KEY` | catalog search implemented |
 | STAC Earth Search (key-free) | — | scene retrieval for “find images” queries |
+| Google AI Studio (Gemini) | `GEMINI_API_KEY` | Optional Google Search-grounded research on `/api/queries/research` and `/understand` |
 | Optional ML/geo | `LLM_API_KEY` | sets `DEMO_MODE=auto` to prefer real providers when keys are set |
+
+Create a Gemini key in [Google AI Studio](https://aistudio.google.com/app/apikey),
+then set `GEMINI_API_KEY=...` in `backend/.env` for a local backend, or in the
+project-root `.env` when using Docker Compose. Restart the backend after setting
+it. Research requests and parsed location/date context are sent to Gemini for
+grounded research; the key is only used server-side. The feature is optional and
+the existing curated research brief remains available when the key is absent or
+the Gemini service cannot be reached.
 
 When keys are absent, `DEMO_MODE=auto` keeps the demo catalog alive and the
 frontend labels every result **Demo / simulated**.

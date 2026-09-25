@@ -53,6 +53,8 @@ services:
       - POSTGRES_DSN=postgresql://postgres:postgres@postgis:5432/satquery
       - REDIS_URL=redis://redis:6379/0
       - REDIS_ENABLED=auto
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-2.5-flash}
       - FRONTEND_ORIGIN=http://localhost:5173
       - JWT_SECRET=change-me-in-production
       - DEMO_MODE=auto

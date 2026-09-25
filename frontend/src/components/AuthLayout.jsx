@@ -20,7 +20,7 @@ export default function AuthLayout({ title, subtitle, children, footer }) {
       <main className="relative flex flex-1 items-center justify-center px-4 py-10 sm:px-6 sm:py-14">
         <div className="w-full max-w-[26rem] animate-fade-up">
           <div className="mb-6 flex justify-center">
-            <Logo size={38} />
+            <Logo size={52} />
           </div>
 
           <div className="card relative overflow-hidden p-6 sm:p-8">
@@ -49,7 +49,7 @@ export default function AuthLayout({ title, subtitle, children, footer }) {
 export function SessionBootScreen({ label = "Restoring session…" }) {
   return (
     <div className="flex min-h-[100dvh] flex-col items-center justify-center gap-6 px-4">
-      <Logo size={38} className="justify-center" />
+      <Logo size={52} className="justify-center" />
       <Spinner className="h-6 w-6" label={label} />
     </div>
   );

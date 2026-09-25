@@ -12,6 +12,12 @@ const W = 210; // A4 width
 // stay self-contained. A missing logo never breaks an export.
 const LOGO_URL = "/logo.png";
 const LOGO_ASPECT = 1400 / 467; // supplied artwork aspect ratio (transparent PNG)
+// The artwork is a full lockup (wordmark ~35% of its height, tagline ~7%), so the
+// words only read once it is drawn tall enough: ~13mm keeps the wordmark crisp,
+// ~17mm the tagline too. Header text reserves this width so a long report title
+// can never run underneath the logo.
+const HEADER_LOGO_HEIGHT = 15; // mm
+const HEADER_LOGO_RESERVE = HEADER_LOGO_HEIGHT * LOGO_ASPECT + 6; // mm, incl. gap
 let logoPromise = null;
 
 function loadLogo() {
@@ -33,7 +39,7 @@ function loadLogo() {
  * Draw the logo on a white rounded plate at the right edge of a header band.
  * The artwork is a transparent PNG, so the plate keeps it legible on the teal band.
  */
-function drawLogo(doc, logo, { right, top, height = 10 }) {
+function drawLogo(doc, logo, { right, top, height = HEADER_LOGO_HEIGHT }) {
   if (!logo) return;
   const width = height * LOGO_ASPECT;
   const x = right - width;
@@ -77,7 +83,7 @@ export async function buildAnalysisPdf(result) {
   doc.setFont("helvetica", "bold");
   doc.setFontSize(17);
   const title = result.label || "SatQuery AI Analysis";
-  doc.text(fitLine(doc, title, W - 2 * M - 38), M, 11);
+  doc.text(fitLine(doc, title, W - 2 * M - HEADER_LOGO_RESERVE), M, 11);
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8);
   doc.text(
@@ -86,7 +92,7 @@ export async function buildAnalysisPdf(result) {
   );
   const sim = result.simulated ?? Boolean(result.metadata?.simulated);
   doc.text(sim ? "⚠ DEMO / simulated data — illustrative only" : "Real catalogue data", M, 23);
-  drawLogo(doc, logo, { right: W - M, top: 3, height: 10 });
+  drawLogo(doc, logo, { right: W - M, top: 4, height: HEADER_LOGO_HEIGHT });
   y += 30;
 
   // Query
@@ -281,10 +287,10 @@ export async function buildChangeAnalysisPdf(result) {
   doc.setTextColor(255, 255, 255);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(16);
-  doc.text(fitLine(doc, "Historical Change Analysis", 210 - 2 * PM - 44), PM, 12);
+  doc.text(fitLine(doc, "Historical Change Analysis", 210 - 2 * PM - HEADER_LOGO_RESERVE), PM, 12);
   doc.setFontSize(11);
-  doc.text(fitLine(doc, und.location || result.label || "—", 210 - 2 * PM - 44), PM, 19);
-  drawLogo(doc, logo, { right: 210 - PM, top: 5, height: 11 });
+  doc.text(fitLine(doc, und.location || result.label || "—", 210 - 2 * PM - HEADER_LOGO_RESERVE), PM, 19);
+  drawLogo(doc, logo, { right: 210 - PM, top: 4, height: HEADER_LOGO_HEIGHT });
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8);
   const sim = result.simulated ?? true;

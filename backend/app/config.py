@@ -109,6 +109,10 @@ class Settings:
     DEMO_MODE = os.getenv("DEMO_MODE", "auto").lower()
     LLM_API_KEY = os.getenv("LLM_API_KEY", "")
     LLM_MODEL = os.getenv("LLM_MODEL", "")
+    # Google AI Studio Gemini key for optional Google Search-grounded research.
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "") or os.getenv("GOOGLE_AI_STUDIO_API_KEY", "")
+    GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    GEMINI_TIMEOUT_SECONDS = int(os.getenv("GEMINI_TIMEOUT_SECONDS", "45"))
 
     # --- Historical change analysis (Date 1 -> Date 2, op: change-analysis) ---
     # Dedicated "what changed between two dates at this place?" pipeline that

@@ -284,8 +284,12 @@ body.light .map-legend { background: rgba(255, 255, 255, 0.9); border-color: #cb
 }
 /* Both assets are transparent PNGs. The square mark is vivid blue, so it sits
    directly on the dark shell; the lockup's wordmark is deep navy (designed for a
-   light background), so it keeps the light plate the source artwork was made on. */
-.brand-logo { box-sizing: content-box; background: #f7f7f7; padding: 5px 9px; }
+   light background), so it keeps the light plate the source artwork was made on.
+   The plate is kept to a hairline inset: the lockup is rendered large enough for
+   its wordmark/tagline to read (see Logo.jsx), and a fat plate would push it out
+   of the 72px sidebar header. */
+.brand-logo { box-sizing: content-box; background: transparent; padding: 0; }
+.sidebar-brand-logo { max-width: 100%; max-height: 50px; padding: 1px 6px; }
 .brand-logo-mark { background: transparent; }
 
 /* ============================================================

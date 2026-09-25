@@ -375,7 +375,7 @@ _REPORT_CSS = """
   header { border-bottom:3px solid #0891b2; padding-bottom:14px; margin-bottom:22px; }
   .brand { color:#0891b2; font-weight:800; letter-spacing:.4px; }
   .brand span { color:#0f172a; }
-  .brand-logo { display:block; height:44px; width:auto; margin-bottom:8px; border-radius:6px; }
+  .brand-logo { display:block; height:64px; width:auto; margin-bottom:8px; border-radius:6px; }
   .doc-title { font-size:26px; font-weight:800; margin-top:8px; letter-spacing:-.3px; }
   .meta { color:#64748b; font-size:12.5px; margin-top:6px; }
   .banner { border-radius:10px; padding:10px 14px; font-size:13px; margin-top:12px; }
@@ -442,13 +442,15 @@ def pdf_bytes(result: dict, summary: dict, understanding: dict) -> bytes | None:
     # only decodes (through Pillow) while it is being drawn, so the asset is
     # probed eagerly here: a missing or unreadable artwork degrades to a
     # text-only report instead of failing the whole PDF export.
+    # Sized for legibility: the lockup's wordmark is ~35% of its height and the
+    # tagline ~7%, so anything under ~13 mm leaves the words unreadable in print.
     brand_block: list = []
     try:
         from reportlab.lib.utils import ImageReader
 
         ImageReader(str(LOGO_PATH)).getSize()
         brand_block = [
-            ReportImage(str(LOGO_PATH), width=51 * mm, height=17 * mm),
+            ReportImage(str(LOGO_PATH), width=72 * mm, height=24 * mm),
             Spacer(1, 3 * mm),
         ]
     except Exception:

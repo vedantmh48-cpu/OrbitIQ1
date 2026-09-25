@@ -550,12 +550,44 @@ def build_research_brief(
     if db is not None:
         research["recommended_datasets"] = _recommended_datasets(db, understanding)
 
+    # Optional current web research. The API key remains server-side, and the
+    # existing deterministic brief is preserved if Gemini is unset/unavailable.
+    try:
+        from .gemini_research import generate_research
+
+        ai_research = generate_research(
+            understanding.get("query_text") or " ".join(
+                str(understanding.get(k)) for k in ("phenomenon", "location", "data_type")
+                if understanding.get(k)
+            ),
+            {
+                "phenomenon": phenom,
+                "location": location_context.get("name"),
+                "country": location_context.get("country"),
+                "date_start": understanding.get("date_start"),
+                "date_end": understanding.get("date_end"),
+                "data_type": understanding.get("data_type"),
+            },
+        )
+        if ai_research:
+            research["ai_research"] = ai_research
+            research["sources"].extend(
+                source["title"] for source in ai_research.get("sources", [])
+            )
+    except Exception:
+        # Never let optional model enrichment break query understanding.
+        pass
+
+    grounded_source_titles = [
+        source["title"] for source in (research.get("ai_research") or {}).get("sources", [])
+    ]
     research["sources"] = sorted({
         "SatQuery AI curated reference knowledge",
         "Open-Meteo (current + climate archive)",
         "USGS Earthquake Hazards Program",
         "Amazon Web Services — Earth Search STAC (Sentinel-1/2)",
         facts["title"],
+        *grounded_source_titles,
     })
     return research
             "available": False, "real": False,
