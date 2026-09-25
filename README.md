@@ -1,4 +1,6 @@
-# 🛰️ SatQuery AI
+# SatQuery AI
+
+<img src="frontend/public/logo.png" alt="SatQuery AI — from satellites to solutions" width="440" />
 
 **AI-powered natural-language satellite data query system** — ask questions in
 plain English about the Earth, and get agent-driven geospatial analyses with
@@ -93,6 +95,31 @@ Or register your own account in the UI.
 > **No MongoDB? No problem.** The backend runs against a thread-safe local
 > JSON store (`backend/data/local_db.json`) when MongoDB is unreachable
 > (`DB_MODE=auto`). To force MongoDB, see config below.
+## 🎨 Branding & logo
+
+The brand is **SatQuery AI** (artwork: *“from satellites to solutions”*). Both
+brand files are transparent PNGs: the square mark sits directly on the dark app
+shell, while the lockup keeps a light plate because its wordmark is deep navy.
+
+To swap the logo, replace these two files, then copy the new lockup into the API
+(the backend cannot read the frontend bundle):
+
+```bash
+cp frontend/public/logo.png backend/app/assets/logo.png
+```
+
+| Asset | Used by |
+|---|---|
+| `frontend/public/logo.png` — lockup (mark + wordmark + tagline), 1400×467 | README header, in-app sidebar / auth screens / 404 (`Logo.jsx`), `og:image`, client-side PDF export |
+| `frontend/public/logo-mark.png` — square orbit mark, 256×256 | favicon, apple-touch-icon, collapsed sidebar |
+| `backend/app/assets/logo.png` — copy of the lockup | HTML + PDF report exports (inlined, so exports stay self-contained) |
+| `frontend/src/components/Logo.jsx` | one component used by the sidebar, auth screens and the 404 page |
+| e-mail templates | text-only brand (`SMTP_FROM_NAME`, default `SatQuery AI`) — intentionally no embedded image, for reliable delivery |
+
+Reports embed the logo as a base64 data URI / inline image, so the exported files
+stay self-contained; if the artwork is missing the exports fall back to a
+text-only brand instead of failing.
+
 ## 📦 Project layout
 
 ```
@@ -126,6 +153,10 @@ Or register your own account in the UI.
 │   ├── src/
 │   │   ├── api/client.js       # fetch wrapper + refresh login + WS + downloads
 │   │   ├── context/            # auth + theme providers
+│   │   └── components/         # layout, Logo.jsx, maps, charts, UI kit
+├── frontend/public/            # logo.png (lockup) + logo-mark.png (favicon)
+```
+
 ## ✅ Running the checks
 
 ```bash
@@ -155,7 +186,7 @@ SMTP_PORT=587
 SMTP_USE_STARTTLS=true
 SMTP_USERNAME=you@gmail.com        # the Gmail mailbox that authenticates
 SMTP_PASSWORD=xxxxxxxxxxxxxxxx     # Google App Password (spaces are stripped)
-SMTP_FROM_NAME=OrbitIQ             # sender display name (branding)
+SMTP_FROM_NAME=SatQuery AI         # sender display name (branding)
 LOGIN_NOTIFICATION_ENABLED=true    # "new sign-in" alerts (per-user opt-out too)
 ```
 

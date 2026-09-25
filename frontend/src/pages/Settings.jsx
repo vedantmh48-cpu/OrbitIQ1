@@ -363,7 +363,7 @@ function ApiTab() {
     <Card>
       <h2 className="text-lg font-semibold text-white">API configuration</h2>
       <p className="mt-2 text-sm text-slate-400">
-        OrbitIQ ships with a demo catalogue needing no keys. To enable real
+        SatQuery AI ships with a demo catalogue needing no keys. To enable real
         provider data, set credentials in the backend&apos;s <code className="text-accent">.env</code> and restart the API.
       </p>
       <div className="mt-4 rounded-lg border border-space-700 bg-space-850/60 p-4 font-mono text-xs text-slate-300">

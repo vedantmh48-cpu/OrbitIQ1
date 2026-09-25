@@ -1,5 +1,5 @@
 /**
- * Role-specific registration forms for the four OrbitIQ account types.
+ * Role-specific registration forms for the four SatQuery AI account types.
  */
 import { useMemo, useState } from "react";
 import { ChevronLeft } from "lucide-react";

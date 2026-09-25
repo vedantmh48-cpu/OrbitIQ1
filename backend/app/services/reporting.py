@@ -2,14 +2,40 @@
 Google-Docs-compatible DOCX export (pure OOXML via the standard library)."""
 from __future__ import annotations
 
+import base64
 import csv
 import html as _html
 import io
 import json
 import zipfile
 from datetime import datetime, timezone
+from functools import lru_cache
+from pathlib import Path
 
 from ..storage import datetime_now
+
+# Brand artwork shipped with the API: inlined into the HTML export and placed on
+# the first page of the PDF export. Every use degrades gracefully to text when
+# the asset is unavailable, so exports never fail because of branding.
+LOGO_PATH = Path(__file__).resolve().parent.parent / "assets" / "logo.png"
+
+
+@lru_cache(maxsize=1)
+def _logo_data_uri() -> str | None:
+    """Base64 data URI of the logo, or ``None`` when the asset is missing."""
+    try:
+        raw = LOGO_PATH.read_bytes()
+    except OSError:
+        return None
+    return "data:image/png;base64," + base64.b64encode(raw).decode("ascii")
+
+
+def report_brand_html() -> str:
+    """Header brand block: the logo artwork when present, text otherwise."""
+    data_uri = _logo_data_uri()
+    if data_uri:
+        return f'<img class="brand-logo" src="{data_uri}" alt="SatQuery AI">'
+    return '<div class="brand">&#128752; SatQuery AI</div>'
 
 OP_LABELS = {
     "flood-mapping": "flood extent",
@@ -286,13 +312,14 @@ def html_report(result: dict, summary: dict, understanding: dict) -> str:
         "<div class='banner ok'>Real catalogue data was used.</div>"
     )
     css = _REPORT_CSS
+    brand = report_brand_html()
     page = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <title>SatQuery AI — {_html.escape(ctx['title'])}</title>
 <style>{css}</style></head><body>
 <div class="page">
   <header>
-    <div class="brand">&#128752; SatQuery <span>AI</span></div>
+    {brand}
     <div class="doc-title">{_html.escape(ctx['title'])}</div>
     <div class="meta">
       Generated {_html.escape(ctx['created_at'].replace('T',' ')[:16])} UTC ·
@@ -348,6 +375,7 @@ _REPORT_CSS = """
   header { border-bottom:3px solid #0891b2; padding-bottom:14px; margin-bottom:22px; }
   .brand { color:#0891b2; font-weight:800; letter-spacing:.4px; }
   .brand span { color:#0f172a; }
+  .brand-logo { display:block; height:44px; width:auto; margin-bottom:8px; border-radius:6px; }
   .doc-title { font-size:26px; font-weight:800; margin-top:8px; letter-spacing:-.3px; }
   .meta { color:#64748b; font-size:12.5px; margin-top:6px; }
   .banner { border-radius:10px; padding:10px 14px; font-size:13px; margin-top:12px; }
@@ -386,7 +414,8 @@ def pdf_bytes(result: dict, summary: dict, understanding: dict) -> bytes | None:
         from reportlab.lib.units import mm
         from reportlab.lib import colors
         from reportlab.platypus import (
-            Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle, ListFlowable, ListItem,
+            Image as ReportImage, Paragraph, SimpleDocTemplate, Spacer, Table,
+            TableStyle, ListFlowable, ListItem,
         )
     except Exception:
         return None
@@ -409,7 +438,24 @@ def pdf_bytes(result: dict, summary: dict, understanding: dict) -> bytes | None:
     small = ParagraphStyle("SmallX", parent=styles["BodyText"], fontSize=8, leading=11, textColor=GREY)
     mono = ParagraphStyle("MonoX", parent=body, fontName="Courier", fontSize=8.5)
 
+    # Brand logo on page 1. The artwork is a transparent PNG, which ``reportlab``
+    # only decodes (through Pillow) while it is being drawn, so the asset is
+    # probed eagerly here: a missing or unreadable artwork degrades to a
+    # text-only report instead of failing the whole PDF export.
+    brand_block: list = []
+    try:
+        from reportlab.lib.utils import ImageReader
+
+        ImageReader(str(LOGO_PATH)).getSize()
+        brand_block = [
+            ReportImage(str(LOGO_PATH), width=51 * mm, height=17 * mm),
+            Spacer(1, 3 * mm),
+        ]
+    except Exception:
+        brand_block = []
+
     story = [
+        *brand_block,
         Paragraph(f"SatQuery AI — {_esc_pdf(ctx['title'])}", title),
         Paragraph(
             f"Generated {ctx['created_at'].replace('T', ' ')[:19]} UTC · Confidence "

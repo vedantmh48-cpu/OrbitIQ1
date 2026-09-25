@@ -173,9 +173,9 @@ class Settings:
     # Gmail requires the envelope sender to be the authenticated mailbox, so
     # an empty SMTP_FROM falls back to SMTP_USERNAME.
     SMTP_FROM = (
-        os.getenv("SMTP_FROM", "").strip() or SMTP_USERNAME or "no-reply@orbitiq.ai"
+        os.getenv("SMTP_FROM", "").strip() or SMTP_USERNAME or "no-reply@satquery.ai"
     )
-    SMTP_FROM_NAME = os.getenv("SMTP_FROM_NAME", "OrbitIQ").strip() or "OrbitIQ"
+    SMTP_FROM_NAME = os.getenv("SMTP_FROM_NAME", "SatQuery AI").strip() or "SatQuery AI"
     SMTP_REPLY_TO = os.getenv("SMTP_REPLY_TO", "").strip()
     SMTP_USE_STARTTLS = _env_flag("SMTP_USE_STARTTLS", True)
     SMTP_USE_SSL = _env_flag("SMTP_USE_SSL", False)
@@ -241,7 +241,7 @@ class Settings:
         return self.mail_credentials_present()
 
     def sender_header(self) -> str:
-        """RFC 5322 ``From`` header, e.g. ``OrbitIQ <no-reply@orbitiq.ai>``."""
+        """RFC 5322 ``From`` header, e.g. ``SatQuery AI <no-reply@satquery.ai>``."""
         name = "".join(
             ch for ch in (self.SMTP_FROM_NAME or "") if ch not in '<>"\r\n,'
         ).strip()

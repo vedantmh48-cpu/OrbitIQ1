@@ -127,7 +127,7 @@ export default function Layout({ children }) {
               <ChevronLeft className={`h-5 w-5 transition-transform ${collapsed ? "rotate-180" : ""}`} />
             </button>
             <div className="min-w-0">
-              <div className="truncate text-sm font-semibold text-slate-200">{current?.label || "OrbitIQ"}</div>
+              <div className="truncate text-sm font-semibold text-slate-200">{current?.label || "SatQuery AI"}</div>
               <div className="hidden truncate text-[11px] text-slate-500 sm:block">{current?.hint || "Satellite intelligence platform"}</div>
             </div>
           </div>

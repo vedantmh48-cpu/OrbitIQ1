@@ -68,7 +68,7 @@ completed MFA challenge)**, are delivered over SMTP. Defaults target Gmail
 (the Gmail address) and `SMTP_PASSWORD` (a 16-character Google **App
 Password**, spaces are stripped automatically); `MAIL_ENABLED=auto` (default)
 sends as soon as both are present. Sender branding comes from
-`SMTP_FROM_NAME` (default `OrbitIQ`).
+`SMTP_FROM_NAME` (default `SatQuery AI`).
 
 * When SMTP is unconfigured (or a send fails) the OTP response contains
   `demo_code` instead and the alert is skipped - registration, login and MFA

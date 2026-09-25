@@ -49,7 +49,7 @@ def validate_code(secret_b32: str, code: str, window: int = TOTP_WINDOW) -> bool
     return False
 
 
-def otpauth_uri(secret_b32: str, account_name: str, issuer: str = "OrbitIQ") -> str:
+def otpauth_uri(secret_b32: str, account_name: str, issuer: str = "SatQuery AI") -> str:
     import urllib.parse
 
     label = urllib.parse.quote(f"{issuer}:{account_name}")

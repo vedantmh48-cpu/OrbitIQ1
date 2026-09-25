@@ -857,7 +857,7 @@ function Login() {
     AuthLayout,
     {
       title: mode === "form" ? "Welcome back" : mode === "verify_email" ? "Verify your email" : "Two-factor authentication",
-      subtitle: mode === "form" ? "Access your OrbitIQ workspace." : mode === "verify_email" ? "Enter the 6-digit code we sent to your inbox." : "Enter the code from your authenticator app.",
+      subtitle: mode === "form" ? "Access your SatQuery AI workspace." : mode === "verify_email" ? "Enter the 6-digit code we sent to your inbox." : "Enter the code from your authenticator app.",
       children: [
         error && /* @__PURE__ */ jsx6("div", { id: "login-error", role: "alert", "aria-live": "polite", className: "mb-4", children: /* @__PURE__ */ jsx6(Alert, { type: "error", children: error }) }),
         mode === "form" && /* @__PURE__ */ jsxs6(Fragment, { children: [
@@ -923,7 +923,7 @@ function Login() {
               {
                 id: "create-account-heading",
                 className: "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500",
-                children: "New to OrbitIQ?"
+                children: "New to SatQuery AI?"
               }
             ),
             /* @__PURE__ */ jsx6(Link, { to: "/register", className: "btn-ghost mt-3 w-full", children: "Create account" })

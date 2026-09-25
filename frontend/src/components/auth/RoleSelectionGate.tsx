@@ -1,6 +1,6 @@
 /**
  * "Choose Your Path" role selection gate.
- * Presents the four OrbitIQ account types.
+ * Presents the four SatQuery AI account types.
  */
 import { Building2, FlaskConical, GraduationCap, Map } from "lucide-react";
 import type { AccountType } from "../../types/auth";
@@ -54,7 +54,7 @@ export default function RoleSelectionGate({
   return (
     <div>
       <p className="mb-5 text-sm text-slate-400">
-        Choose the path that best describes how you’ll use OrbitIQ. Your
+        Choose the path that best describes how you’ll use SatQuery AI. Your
         account type shapes your workspace and security defaults.
       </p>
       <div className="grid gap-3 sm:grid-cols-2">

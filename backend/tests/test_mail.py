@@ -21,10 +21,10 @@ from app.config import normalize_app_password
 from app.middleware import redact_sensitive_log_text
 from app.services import mailer
 
-GMAIL_USER = "orbitiq.tester@gmail.com"
+GMAIL_USER = "satquery.tester@gmail.com"
 APP_PASSWORD = "abcdefghijklmnop"  # the normalised form of "abcd efgh ijkl mnop"
-MASKED_GMAIL_USER = "o*************@gmail.com"  # "orbitiq.tester" masked
-STUDENT_EMAIL = "mia.mail@orbitiq.ai"
+MASKED_GMAIL_USER = "s**************@gmail.com"  # "satquery.tester" masked
+STUDENT_EMAIL = "mia.mail@satquery.ai"
 
 
 # ---------------------------------------------------------------------------
@@ -43,7 +43,7 @@ def outbox(monkeypatch):
         "SMTP_USERNAME": GMAIL_USER,
         "SMTP_PASSWORD": APP_PASSWORD,
         "SMTP_FROM": GMAIL_USER,
-        "SMTP_FROM_NAME": "OrbitIQ",
+        "SMTP_FROM_NAME": "SatQuery AI",
         "SMTP_USE_STARTTLS": True,
         "SMTP_USE_SSL": False,
         "SMTP_TIMEOUT_SECONDS": 15,
@@ -64,7 +64,7 @@ def _register_student(client, email=STUDENT_EMAIL, password="Password1"):
             "email": email,
             "password": password,
             "confirm_password": password,
-            "institution": "OrbitIQ University",
+            "institution": "SatQuery University",
             "course": "Remote Sensing",
             "year_of_study": 2,
         },
@@ -134,8 +134,8 @@ def test_all_transactional_templates_have_safe_html_and_text(outbox):
         rendered = mailer.render_template(name, **context)
         assert rendered["text"]
         assert rendered["html"]
-        assert "OrbitIQ" in rendered["html"]
-        assert "cid:orbitiq-logo" not in rendered["html"]
+        assert "SatQuery AI" in rendered["html"]
+        assert "cid:satquery-logo" not in rendered["html"]
 
 
 def test_status_masks_credentials_and_never_leaks_the_password(outbox):
@@ -145,7 +145,7 @@ def test_status_masks_credentials_and_never_leaks_the_password(outbox):
     assert status["transport"] == "starttls"
     assert status["host"] == "smtp.gmail.com"
     assert status["port"] == 587
-    assert status["from_name"] == "OrbitIQ"
+    assert status["from_name"] == "SatQuery AI"
     assert status["username"] == MASKED_GMAIL_USER
 
     payload = json.dumps(status)
@@ -161,7 +161,7 @@ def test_mail_disabled_keeps_the_demo_code_fallback(client, monkeypatch):
     monkeypatch.setattr("app.config.settings.SMTP_PASSWORD", "", raising=False)
     assert mailer.is_configured() is False
 
-    body = _register_student(client, email="offline.user@orbitiq.ai").json()
+    body = _register_student(client, email="offline.user@satquery.ai").json()
     assert len(body["demo_code"]) == 6
 
 
@@ -182,19 +182,19 @@ def test_registration_sends_the_otp_email(client, outbox):
     assert len(outbox) == 1
     message = outbox[0]
     assert message["To"] == STUDENT_EMAIL
-    assert message["From"] == f"OrbitIQ <{GMAIL_USER}>"
-    assert message["Subject"] == "Verify your OrbitIQ account"
+    assert message["From"] == f"SatQuery AI <{GMAIL_USER}>"
+    assert message["Subject"] == "Verify your SatQuery AI account"
 
     text = _plain_body(message)
     assert "Hello Mia Mail," in text
-    assert "confirm your OrbitIQ account" in text
-    assert "Regards,\nOrbitIQ Team" in text
+    assert "confirm your SatQuery AI account" in text
+    assert "Regards,\nSatQuery AI Team" in text
     code = _six_digit_code(message)
     assert code in text
     html = message.get_body(preferencelist=("html",)).get_content()
-    assert "OrbitIQ" in html
-    assert "cid:orbitiq-logo" not in html
-    assert not any(part["Content-ID"] == "<orbitiq-logo>" for part in message.walk())
+    assert "SatQuery AI" in html
+    assert "cid:satquery-logo" not in html
+    assert not any(part["Content-ID"] == "<satquery-logo>" for part in message.walk())
     assert "Verification code" in html
     assert APP_PASSWORD not in text
     assert APP_PASSWORD not in json.dumps(body)
@@ -218,7 +218,7 @@ def test_otp_verification_uses_the_emailed_code(client, outbox):
     # Verification issues an authenticated session, so it also produces the
     # new-sign-in security alert.
     assert len(outbox) == 2
-    assert outbox[1]["Subject"] == "New sign-in to your OrbitIQ account"
+    assert outbox[1]["Subject"] == "New sign-in to your SatQuery AI account"
 
 
 # ---------------------------------------------------------------------------
@@ -227,31 +227,31 @@ def test_otp_verification_uses_the_emailed_code(client, outbox):
 
 
 def test_otp_resend_sends_a_fresh_code(client, outbox):
-    _register_student(client, email="resend@orbitiq.ai")
+    _register_student(client, email="resend@satquery.ai")
     first_code = _six_digit_code(outbox[0])
 
     response = client.post(
-        "/api/v1/auth/verify-email/resend", json={"email": "resend@orbitiq.ai"}
+        "/api/v1/auth/verify-email/resend", json={"email": "resend@satquery.ai"}
     )
     assert response.status_code == 200
     assert "demo_code" not in response.json()
     assert len(outbox) == 2
-    assert outbox[1]["To"] == "resend@orbitiq.ai"
+    assert outbox[1]["To"] == "resend@satquery.ai"
 
     second_code = _six_digit_code(outbox[1])
     assert second_code != first_code
 
     verify = client.post(
         "/api/v1/auth/verify-email",
-        json={"email": "resend@orbitiq.ai", "code": second_code},
+        json={"email": "resend@satquery.ai", "code": second_code},
     )
     assert verify.status_code == 200
     assert verify.json()["user"]["email_verified"] is True
 
 
 def test_password_change_otp_uses_the_same_mailer(client, outbox):
-    _register_student(client, email="pwd@orbitiq.ai")
-    data = _verify_with_email_code(client, outbox, "pwd@orbitiq.ai").json()
+    _register_student(client, email="pwd@satquery.ai")
+    data = _verify_with_email_code(client, outbox, "pwd@satquery.ai").json()
     headers = {"Authorization": f"Bearer {data['access_token']}"}
 
     response = client.post(
@@ -276,23 +276,23 @@ def test_password_change_otp_uses_the_same_mailer(client, outbox):
 
 
 def test_login_sends_the_notification_email(client, outbox):
-    _register_student(client, email="notify@orbitiq.ai")
-    _verify_with_email_code(client, outbox, "notify@orbitiq.ai")
+    _register_student(client, email="notify@satquery.ai")
+    _verify_with_email_code(client, outbox, "notify@satquery.ai")
     outbox.clear()
 
     response = client.post(
         "/api/v1/auth/login",
-        json={"email": "notify@orbitiq.ai", "password": "Password1"},
+        json={"email": "notify@satquery.ai", "password": "Password1"},
     )
     assert response.status_code == 200, response.text
     assert response.json()["access_token"]
 
     assert len(outbox) == 1
     message = outbox[0]
-    assert message["To"] == "notify@orbitiq.ai"
-    assert message["Subject"] == "New sign-in to your OrbitIQ account"
+    assert message["To"] == "notify@satquery.ai"
+    assert message["Subject"] == "New sign-in to your SatQuery AI account"
     text = _plain_body(message)
-    assert "Your OrbitIQ account was successfully signed in." in text
+    assert "Your SatQuery AI account was successfully signed in." in text
     assert "Date & time:" in text
     assert "IP address:" in text
     assert "Device: Browser" in text  # from the test client's user agent
@@ -329,13 +329,13 @@ def test_mfa_login_sends_the_notification_email(client, outbox):
 
     assert len(outbox) == 1
     assert outbox[0]["To"] == "gwen.gov@state.gov"
-    assert "Your OrbitIQ account was successfully signed in." in _plain_body(outbox[0])
+    assert "Your SatQuery AI account was successfully signed in." in _plain_body(outbox[0])
 
 
 
 def test_login_notification_respects_the_user_preference(client, outbox):
-    _register_student(client, email="prefs@orbitiq.ai")
-    data = _verify_with_email_code(client, outbox, "prefs@orbitiq.ai").json()
+    _register_student(client, email="prefs@satquery.ai")
+    data = _verify_with_email_code(client, outbox, "prefs@satquery.ai").json()
     headers = {"Authorization": f"Bearer {data['access_token']}"}
 
     client.put(
@@ -349,7 +349,7 @@ def test_login_notification_respects_the_user_preference(client, outbox):
     outbox.clear()
     client.post(
         "/api/v1/auth/login",
-        json={"email": "prefs@orbitiq.ai", "password": "Password1"},
+        json={"email": "prefs@satquery.ai", "password": "Password1"},
     )
     assert outbox == []  # opted out
 
@@ -360,14 +360,14 @@ def test_login_notification_respects_the_user_preference(client, outbox):
     )
     client.post(
         "/api/v1/auth/login",
-        json={"email": "prefs@orbitiq.ai", "password": "Password1"},
+        json={"email": "prefs@satquery.ai", "password": "Password1"},
     )
     assert len(outbox) == 1  # opted back in
 
 
 def test_login_notification_can_be_switched_off_globally(client, outbox, monkeypatch):
-    _register_student(client, email="globalswitch@orbitiq.ai")
-    _verify_with_email_code(client, outbox, "globalswitch@orbitiq.ai")
+    _register_student(client, email="globalswitch@satquery.ai")
+    _verify_with_email_code(client, outbox, "globalswitch@satquery.ai")
     outbox.clear()
 
     monkeypatch.setattr(
@@ -375,7 +375,7 @@ def test_login_notification_can_be_switched_off_globally(client, outbox, monkeyp
     )
     client.post(
         "/api/v1/auth/login",
-        json={"email": "globalswitch@orbitiq.ai", "password": "Password1"},
+        json={"email": "globalswitch@satquery.ai", "password": "Password1"},
     )
     assert outbox == []
 
@@ -386,14 +386,14 @@ def test_unverified_accounts_are_not_alerted(client, outbox):
         "/api/auth/register",
         json={
             "name": "Legacy User",
-            "email": "legacy@orbitiq.ai",
+            "email": "legacy@satquery.ai",
             "password": "Password1",
             "confirm_password": "Password1",
         },
     )
     response = client.post(
         "/api/auth/login",
-        json={"email": "legacy@orbitiq.ai", "password": "Password1"},
+        json={"email": "legacy@satquery.ai", "password": "Password1"},
     )
     assert response.status_code == 200
     assert outbox == []
@@ -424,7 +424,7 @@ def test_smtp_auth_failure_does_not_crash_registration(client, outbox, monkeypat
     monkeypatch.setattr(
         mailer.logger, "warning", lambda msg, *a, **k: warnings.append(str(msg))
     )
-    response = _register_student(client, email="smtpdown@orbitiq.ai")
+    response = _register_student(client, email="smtpdown@satquery.ai")
 
     # Registration still succeeds. SMTP is background-dispatched, so a
     # transient failure never holds up the authentication response.
@@ -446,7 +446,7 @@ def test_transient_smtp_eof_retries_once_with_a_fresh_delivery(outbox, monkeypat
 
     monkeypatch.setattr(mailer, "_deliver", flaky_deliver)
     monkeypatch.setattr(mailer.time, "sleep", lambda _: None)
-    result = mailer.send_email("retry@orbitiq.ai", "Subject", "Body", label="retry")
+    result = mailer.send_email("retry@satquery.ai", "Subject", "Body", label="retry")
 
     assert result["sent"] is True
     assert len(attempts) == 2
@@ -469,7 +469,7 @@ def test_configured_otp_is_queued_once_without_sending(monkeypatch):
     tasks = BackgroundTasks()
     monkeypatch.setattr(mailer, "is_configured", lambda: True)
 
-    result = queue_otp(tasks, "queued@orbitiq.ai", "register", "123456", "Queued")
+    result = queue_otp(tasks, "queued@satquery.ai", "register", "123456", "Queued")
 
     assert result == {"queued": True}
     assert len(tasks.tasks) == 1
@@ -482,13 +482,13 @@ def test_smtp_failure_never_exposes_the_app_password(outbox, monkeypatch):
         _failing_deliver(RuntimeError(f"535 auth rejected for {APP_PASSWORD}")),
     )
     result = mailer.send_email(
-        "user@orbitiq.ai", "Subject", "Body", label="unit-failure"
+        "user@satquery.ai", "Subject", "Body", label="unit-failure"
     )
     assert result["sent"] is False
     assert result["delivered"] is False
     assert "***" in result["error"]
     assert APP_PASSWORD not in json.dumps(result)
-    assert result["recipient"] == "u***@orbitiq.ai"
+    assert result["recipient"] == "u***@satquery.ai"
 
 
 
@@ -545,7 +545,7 @@ def test_check_connection_success_reports_the_server(monkeypatch):
 # ---------------------------------------------------------------------------
 
 
-def _admin_headers(client, outbox, email="admin.mail@orbitiq.ai"):
+def _admin_headers(client, outbox, email="admin.mail@satquery.ai"):
     """Register + verify a user, promote it to admin, return bearer headers."""
     from app.storage import get_db
 
@@ -578,7 +578,7 @@ def test_admin_mail_status_is_masked_and_probe_is_opt_in(client, outbox, monkeyp
 
 
 def test_admin_smtp_test_sends_an_email(client, outbox):
-    headers = _admin_headers(client, outbox, email="admin.test@orbitiq.ai")
+    headers = _admin_headers(client, outbox, email="admin.test@satquery.ai")
     outbox.clear()
 
     response = client.post("/api/admin/mail/test", headers=headers)
@@ -588,14 +588,14 @@ def test_admin_smtp_test_sends_an_email(client, outbox):
     assert APP_PASSWORD not in response.text
 
     assert len(outbox) == 1
-    assert outbox[0]["To"] == "admin.test@orbitiq.ai"
-    assert outbox[0]["Subject"] == "OrbitIQ email delivery test"
+    assert outbox[0]["To"] == "admin.test@satquery.ai"
+    assert outbox[0]["Subject"] == "SatQuery AI email delivery test"
     assert "Mail provider: gmail" in _plain_body(outbox[0])
 
 
 def test_mail_diagnostics_require_admin(client, outbox):
-    _register_student(client, email="plain.user@orbitiq.ai")
-    data = _verify_with_email_code(client, outbox, "plain.user@orbitiq.ai").json()
+    _register_student(client, email="plain.user@satquery.ai")
+    data = _verify_with_email_code(client, outbox, "plain.user@satquery.ai").json()
     headers = {"Authorization": f"Bearer {data['access_token']}"}
 
     assert client.get("/api/admin/mail/status", headers=headers).status_code == 403
@@ -631,7 +631,7 @@ class _LocalSMTPServer(threading.Thread):
 
     def _session(self, conn):  # pragma: no cover - network dialogue
         with conn.makefile("rwb") as stream:
-            stream.write(b"220 localhost OrbitIQ test ESMTP\r\n")
+            stream.write(b"220 localhost SatQuery AI test ESMTP\r\n")
             stream.flush()
             in_data = False
             while True:
@@ -695,7 +695,7 @@ def test_real_transport_delivers_through_a_live_socket(client, monkeypatch):
     assert "localhost" in check["server"]
 
     try:
-        response = _register_student(client, email="live.socket@orbitiq.ai")
+        response = _register_student(client, email="live.socket@satquery.ai")
         assert response.status_code == 201, response.text
         assert "demo_code" not in response.json()  # really delivered
     finally:
@@ -703,8 +703,8 @@ def test_real_transport_delivers_through_a_live_socket(client, monkeypatch):
         server.stop()
 
     transcript = "\n".join(server.received)
-    assert "Subject: Verify your OrbitIQ account" in transcript
-    assert "To: live.socket@orbitiq.ai" in transcript
+    assert "Subject: Verify your SatQuery AI account" in transcript
+    assert "To: live.socket@satquery.ai" in transcript
     assert "This code expires in 10 minutes" in transcript
     # the app password is only ever sent as an AUTH challenge, never in cleartext
     assert APP_PASSWORD not in transcript

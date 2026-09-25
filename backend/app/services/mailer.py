@@ -1,4 +1,4 @@
-"""OrbitIQ e-mail delivery over SMTP (Gmail-ready).
+"""SatQuery AI e-mail delivery over SMTP (Gmail-ready).
 
 The default transport is **Gmail** (``smtp.gmail.com:587`` with STARTTLS) but
 any standards-compliant SMTP relay works. Every credential is read from the
@@ -33,7 +33,7 @@ from zoneinfo import ZoneInfo
 from ..config import settings
 from ..middleware import logger
 
-PRODUCT_NAME = "OrbitIQ"
+PRODUCT_NAME = "SatQuery AI"
 IST = ZoneInfo("Asia/Kolkata")
 
 _TEMPLATES: dict[str, Callable[[dict], dict]] = {}
@@ -347,7 +347,7 @@ def _greeting(name: str | None) -> str:
     return f"Hello {cleaned or 'there'},"
 
 
-def _footer_text(team: str = "OrbitIQ Team") -> str:
+def _footer_text(team: str = "SatQuery AI Team") -> str:
     return (
         f"Regards,\n{team}\n\n"
         f"---\n{PRODUCT_NAME}\nSatellite intelligence platform\n"
@@ -361,7 +361,7 @@ def _html_brand() -> str:
         '<table role="presentation" cellpadding="0" cellspacing="0" border="0">'
         '<tr><td style="vertical-align:middle;">'
         '<div style="font-family:Arial,sans-serif;font-size:21px;line-height:24px;'
-        'font-weight:700;letter-spacing:-0.3px;color:#0f172a;">OrbitIQ</div>'
+        'font-weight:700;letter-spacing:-0.3px;color:#0f172a;">SatQuery AI</div>'
         '<div style="font-family:Arial,sans-serif;font-size:10px;line-height:15px;'
         'letter-spacing:1px;text-transform:uppercase;color:#64748b;">'
         'Satellite intelligence</div></td></tr></table>'
@@ -395,7 +395,7 @@ def _email_html(
     body: str,
     *,
     security_note: str = "",
-    team: str = "OrbitIQ Team",
+    team: str = "SatQuery AI Team",
 ) -> str:
     """Shared, table-based transactional-email shell with safe escaped content."""
     note = (
@@ -420,7 +420,7 @@ def _email_html(
 <p style="margin:25px 0 0;font-size:14px;line-height:21px;color:#334155;">Regards,<br>{escape(team)}</p>
 </td></tr>
 <tr><td style="padding:20px 32px;background:#f8fafc;border-top:1px solid #dbe3ee;font-family:Arial,sans-serif;font-size:12px;line-height:18px;color:#64748b;">
-<strong style="color:#334155;">OrbitIQ</strong><br>Satellite intelligence platform<br>This is an automated email. Please do not reply.
+<strong style="color:#334155;">SatQuery AI</strong><br>Satellite intelligence platform<br>This is an automated email. Please do not reply.
 </td></tr></table></td></tr></table></body></html>'''
 
 
@@ -432,9 +432,9 @@ def _ist_now_stamp() -> str:
 
 
 _OTP_ACTIONS = {
-    "register": "Use this code to confirm your OrbitIQ account:",
+    "register": "Use this code to confirm your SatQuery AI account:",
     "password_change": "Use this code to confirm your password change:",
-    "reset_password": "Use this code to reset your OrbitIQ password:",
+    "reset_password": "Use this code to reset your SatQuery AI password:",
 }
 
 
@@ -454,19 +454,19 @@ def _login_notification_template(ctx: dict) -> dict:
         f"If this was you, no action is needed.\n\n"
         "If you do not recognize this sign-in, secure your account immediately by "
         "changing your password and reviewing your active sessions.\n\n"
-        f"{_footer_text('OrbitIQ Security Team')}\n"
+        f"{_footer_text('SatQuery AI Security Team')}\n"
     )
     return {
-        "subject": "New sign-in to your OrbitIQ account",
+        "subject": "New sign-in to your SatQuery AI account",
         "text": text,
         "html": _email_html(
             "Security alert", "A successful sign-in was detected.",
-            "Your OrbitIQ account was successfully signed in.",
+            "Your SatQuery AI account was successfully signed in.",
             '<div style="margin-top:24px;padding:18px;border:1px solid #dbe3ee;border-radius:8px;background:#ffffff;">'
             '<div style="font-size:13px;font-weight:700;color:#475569;margin-bottom:8px;">SIGN-IN DETAILS</div>'
             f'{_detail_rows(rows)}</div>',
             security_note="If you do not recognize this sign-in, change your password and review your active sessions immediately.",
-            team="OrbitIQ Security Team",
+            team="SatQuery AI Security Team",
         ),
     }
 
@@ -483,14 +483,14 @@ def _password_reset_template(ctx: dict) -> dict:
         f"This link expires in {ttl} minutes. If you did not request a password reset, "
         "you can safely ignore this email. Your password will remain unchanged.\n\n"
         "For your security, never share this reset link with anyone.\n\n"
-        f"{_footer_text('OrbitIQ Security Team')}\n"
+        f"{_footer_text('SatQuery AI Security Team')}\n"
     )
     return {
-        "subject": "Reset your OrbitIQ password",
+        "subject": "Reset your SatQuery AI password",
         "text": text,
         "html": _email_html(
-            "Password reset", "Reset your OrbitIQ password",
-            "We received a request to reset the password for your OrbitIQ account.",
+            "Password reset", "Reset your SatQuery AI password",
+            "We received a request to reset the password for your SatQuery AI account.",
             '<div style="margin-top:24px;text-align:center;">'
             f'<a href="{escape(url, quote=True)}" style="display:inline-block;padding:14px 24px;background:#0284c7;color:#ffffff;text-decoration:none;border-radius:7px;font-size:16px;font-weight:700;">Reset Password</a>'
             '</div><p style="margin:20px 0 0;font-size:13px;line-height:20px;color:#475569;">'
@@ -498,7 +498,7 @@ def _password_reset_template(ctx: dict) -> dict:
             f'<a href="{escape(url, quote=True)}" style="color:#0369a1;word-break:break-all;">{escape(url)}</a></p>'
             f'<p style="margin:16px 0 0;font-size:14px;line-height:21px;color:#334155;">This link expires in {ttl} minutes.</p>',
             security_note="If you did not request a password reset, you can safely ignore this email. Your password will remain unchanged. Never share this reset link.",
-            team="OrbitIQ Security Team",
+            team="SatQuery AI Security Team",
         ),
     }
 
@@ -509,21 +509,21 @@ def _smtp_test_template(ctx: dict) -> dict:
     text = (
         f"{_greeting(ctx.get('name'))}\n\n"
         f"{PRODUCT_NAME} email delivery is working correctly.\n\n"
-        "This is a test message generated by the OrbitIQ system.\n\n"
+        "This is a test message generated by the SatQuery AI system.\n\n"
         "Delivery details:\n"
         f"Environment: {settings.ENVIRONMENT}\nTimestamp: {when}\nMail provider: {provider_name()}\n\n"
-        f"No action is required.\n\n{_footer_text('OrbitIQ System')}\n"
+        f"No action is required.\n\n{_footer_text('SatQuery AI System')}\n"
     )
     return {
-        "subject": "OrbitIQ email delivery test",
+        "subject": "SatQuery AI email delivery test",
         "text": text,
         "html": _email_html(
             "System test", "Email delivery is working correctly.",
-            "This is a test message generated by the OrbitIQ system.",
+            "This is a test message generated by the SatQuery AI system.",
             '<div style="margin-top:24px;padding:18px;border:1px solid #dbe3ee;border-radius:8px;background:#ffffff;">'
             '<div style="font-size:13px;font-weight:700;color:#475569;margin-bottom:8px;">DELIVERY DETAILS</div>'
             f'{_detail_rows([("Environment", settings.ENVIRONMENT), ("Timestamp", when), ("Mail provider", provider_name())])}</div>',
-            team="OrbitIQ System",
+            team="SatQuery AI System",
         ),
     }
 
@@ -542,15 +542,15 @@ def _otp_template(ctx: dict) -> dict:
         f"If you did not request this code, you can safely ignore this email.\n\n{_footer_text()}\n"
     )
     return {
-        "subject": "Verify your OrbitIQ account",
+        "subject": "Verify your SatQuery AI account",
         "text": text,
         "html": _email_html(
-            "Email verification", "Verify your OrbitIQ account",
+            "Email verification", "Verify your SatQuery AI account",
             f"Welcome to {PRODUCT_NAME}. {action}",
             '<div style="margin-top:24px;padding:22px;border:1px solid #bae6fd;border-radius:10px;background:#f0f9ff;text-align:center;">'
             '<div style="font-size:12px;line-height:18px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#0369a1;">Verification code</div>'
             f'<div style="margin-top:10px;font-family:Arial,sans-serif;font-size:32px;line-height:38px;font-weight:700;letter-spacing:8px;color:#0f172a;">{escape(code)}</div>'
             f'<div style="margin-top:12px;font-size:13px;line-height:20px;color:#475569;">Expires in {ttl} minutes</div></div>',
-            security_note="For your security, never share this verification code with anyone. If you did not create an OrbitIQ account, you can safely ignore this email.",
+            security_note="For your security, never share this verification code with anyone. If you did not create a SatQuery AI account, you can safely ignore this email.",
         ),
     }

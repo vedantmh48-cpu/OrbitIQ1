@@ -155,7 +155,7 @@ function buildStyle(base: ActiveMapLayer | null, overlays: ActiveMapLayer[]): Re
   mapLayers.push(...vec.layers);
   return {
     version: 8,
-    name: base?.entry.title || "OrbitIQ",
+    name: base?.entry.title || "SatQuery AI",
     sources,
     layers: mapLayers,
     terrain: baseUsesDem

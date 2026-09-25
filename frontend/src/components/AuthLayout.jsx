@@ -2,11 +2,11 @@ import Logo from "./Logo.jsx";
 import { Spinner } from "./ui.jsx";
 
 /**
- * OrbitIQ authentication shell — the application entry experience.
+ * SatQuery AI authentication shell — the application entry experience.
  *
  * The app is login-first: this shell is the first thing an unauthenticated
  * visitor sees, so it stays deliberately minimal (brand, form, links). Product
- * explanation belongs on the public OrbitIQ website, not inside the app.
+ * explanation belongs on the public SatQuery AI website, not inside the app.
  */
 export default function AuthLayout({ title, subtitle, children, footer }) {
   return (

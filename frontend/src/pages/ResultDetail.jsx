@@ -124,7 +124,7 @@ export default function ResultDetail() {
   const doDownload = async (fmt, ext) => {
     setExporting(fmt);
     try {
-      await downloadFile(`/api/reports/${result.id}/${fmt}`, `orbitiq-${result.id.slice(0, 8)}.${ext}`);
+      await downloadFile(`/api/reports/${result.id}/${fmt}`, `satquery-${result.id.slice(0, 8)}.${ext}`);
       showToast({ type: "success", title: `${fmt.toUpperCase()} download started`, msg: "Check your browser downloads." });
     } catch (e) {
       setError(e.message);
@@ -134,10 +134,10 @@ export default function ResultDetail() {
   };
 
   /** Client-side PDF — generated entirely in the browser via jsPDF. */
-  const downloadClientPdf = () => {
+  const downloadClientPdf = async () => {
     setExporting("pdf-client");
     try {
-      buildAnalysisPdf(result);
+      await buildAnalysisPdf(result);
       showToast({ type: "success", title: "PDF generated in your browser", msg: "No server round-trip needed." });
     } catch (e) {
       setError(`Client PDF failed (${e.message}) — use the server PDF instead.`);

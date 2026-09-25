@@ -537,7 +537,7 @@ export default function ChangeAnalysis() {
     } catch {
       // Server-side PDF unavailable → build it entirely in the browser (jsPDF).
       try {
-        buildChangeAnalysisPdf(result);
+        await buildChangeAnalysisPdf(result);
       } catch {
         setError("PDF export failed — use the Report (.md) or a print from the browser instead.");
       }

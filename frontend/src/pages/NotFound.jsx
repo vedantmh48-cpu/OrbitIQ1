@@ -11,7 +11,7 @@ export default function NotFound() {
       <p className="max-w-sm text-slate-400">
         The page you're looking for drifted into orbit. Let's get you back to solid ground.
       </p>
-      <Link to="/" className="btn-primary">Return to OrbitIQ</Link>
+      <Link to="/" className="btn-primary">Return to SatQuery AI</Link>
     </div>
   );
 }

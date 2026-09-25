@@ -1,5 +1,5 @@
 /**
- * OrbitIQ - Auth & Account Management TypeScript models.
+ * SatQuery AI - Auth & Account Management TypeScript models.
  *
  * Mirrors the v1 FastAPI contracts under `/api/v1/auth/*`.
  */

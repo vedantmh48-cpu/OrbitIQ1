@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ============================================================
-   OrbitIQ — design system
+   SatQuery AI — design system
    Deep-space theme, glassy cards, gradient accents, fully
    responsive and light-theme aware.
    ============================================================ */
@@ -274,13 +274,19 @@ body.light .map-legend { background: rgba(255, 255, 255, 0.9); border-color: #cb
 .map-legend .sw { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 7px; vertical-align: -1px; }
 
 /* ============================================================
-   Logo orb + misc
+   Brand logo (SatQuery AI artwork)
    ============================================================ */
-.sat-orb {
-  background:
-    radial-gradient(circle at 35% 30%, rgba(103, 232, 249, 0.95), rgba(8, 145, 178, 0.9) 40%, rgba(6, 10, 20, 0.95) 78%);
-  box-shadow: 0 0 40px rgba(34, 211, 238, 0.35), inset -18px -14px 30px rgba(2, 6, 23, 0.9);
+.brand-logo,
+.brand-logo-mark {
+  display: block;
+  object-fit: contain;
+  border-radius: 10px;
 }
+/* Both assets are transparent PNGs. The square mark is vivid blue, so it sits
+   directly on the dark shell; the lockup's wordmark is deep navy (designed for a
+   light background), so it keeps the light plate the source artwork was made on. */
+.brand-logo { box-sizing: content-box; background: #f7f7f7; padding: 5px 9px; }
+.brand-logo-mark { background: transparent; }
 
 /* ============================================================
    Animations

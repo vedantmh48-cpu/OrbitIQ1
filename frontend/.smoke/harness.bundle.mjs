@@ -1049,7 +1049,7 @@ function Login() {
     AuthLayout,
     {
       title: mode === "form" ? "Welcome back" : mode === "verify_email" ? "Verify your email" : "Two-factor authentication",
-      subtitle: mode === "form" ? "Access your OrbitIQ workspace." : mode === "verify_email" ? "Enter the 6-digit code we sent to your inbox." : "Enter the code from your authenticator app.",
+      subtitle: mode === "form" ? "Access your SatQuery AI workspace." : mode === "verify_email" ? "Enter the 6-digit code we sent to your inbox." : "Enter the code from your authenticator app.",
       children: [
         error && /* @__PURE__ */ jsx8("div", { id: "login-error", role: "alert", "aria-live": "polite", className: "mb-4", children: /* @__PURE__ */ jsx8(Alert, { type: "error", children: error }) }),
         mode === "form" && /* @__PURE__ */ jsxs6(Fragment, { children: [
@@ -1115,7 +1115,7 @@ function Login() {
               {
                 id: "create-account-heading",
                 className: "text-xs font-semibold uppercase tracking-[0.16em] text-slate-500",
-                children: "New to OrbitIQ?"
+                children: "New to SatQuery AI?"
               }
             ),
             /* @__PURE__ */ jsx8(Link, { to: "/register", className: "btn-ghost mt-3 w-full", children: "Create account" })
@@ -1293,7 +1293,7 @@ function renderEntry(path, state) {
 }
 var html = renderEntry("/", { user: null, booting: false, loading: false });
 var bodyIndex = (s) => html.indexOf(s);
-check("renders the login screen", html.includes("Welcome back") && html.includes("Access your OrbitIQ workspace"));
+check("renders the login screen", html.includes("Welcome back") && html.includes("Access your SatQuery AI workspace"));
 check("no marketing / landing copy", ["Ask the Earth", "Built for real questions", "Try demo", "demo datasets", "Demo accounts"].every((s) => !html.includes(s)));
 check("no hardcoded credentials", !html.includes("Admin@123") && !/demo@|admin@/.test(html));
 check(
@@ -1328,7 +1328,7 @@ check(
 );
 check(
   "create-account section has a heading + full-width secondary action",
-  html.includes("New to OrbitIQ?") && html.includes('href="/register"') && /class="btn-ghost mt-3 w-full"[^>]*>Create account</.test(html.replace(/<a /g, "<a "))
+  html.includes("New to SatQuery AI?") && html.includes('href="/register"') && /class="btn-ghost mt-3 w-full"[^>]*>Create account</.test(html.replace(/<a /g, "<a "))
 );
 check(
   "create account appears exactly once (no duplicated footer link)",
@@ -1336,7 +1336,7 @@ check(
 );
 var anonDashboard = renderEntry("/dashboard", { user: null, booting: false, loading: false });
 check("anonymous visitor is blocked from protected routes", !anonDashboard.includes("APP_WORKSPACE_MARKER"));
-var authedUser = { id: "u1", name: "Ava Analyst", email: "ava@orbitiq.ai", role: "analyst" };
+var authedUser = { id: "u1", name: "Ava Analyst", email: "ava@satquery.ai", role: "analyst" };
 var authedEntry = renderEntry("/", { user: authedUser, booting: false, loading: false });
 check(
   "authenticated visitor never sees the login form",
@@ -1358,10 +1358,10 @@ check(
 var tokens = (n) => ({ access_token: `acc-${n}`, refresh_token: `ref-${n}`, session_id: `sid-${n}` });
 calls = [];
 responder = () => ({ status: 200, ok: true, body: { user: authedUser, ...tokens(1) } });
-var loggedIn = await useAuthStore2.getState().login({ email: "ava@orbitiq.ai", password: "Password1" });
+var loggedIn = await useAuthStore2.getState().login({ email: "ava@satquery.ai", password: "Password1" });
 check(
   "valid login calls POST /api/v1/auth/login with the payload",
-  calls[0]?.url === "/api/v1/auth/login" && calls[0].method === "POST" && JSON.parse(calls[0].body).email === "ava@orbitiq.ai"
+  calls[0]?.url === "/api/v1/auth/login" && calls[0].method === "POST" && JSON.parse(calls[0].body).email === "ava@satquery.ai"
 );
 check(
   "valid login stores + persists the session",
@@ -1373,7 +1373,7 @@ bag.clear();
 responder = () => ({ status: 401, ok: false, body: { detail: "Invalid email or password.", code: "HTTP_ERROR" } });
 var invalidErr = null;
 try {
-  await useAuthStore2.getState().login({ email: "ava@orbitiq.ai", password: "wrong" });
+  await useAuthStore2.getState().login({ email: "ava@satquery.ai", password: "wrong" });
 } catch (e) {
   invalidErr = e;
 }
@@ -1385,17 +1385,17 @@ check(
 responder = () => ({ status: 403, ok: false, body: { detail: "verify your email", code: "EMAIL_NOT_VERIFIED" } });
 var otpErr = null;
 try {
-  await useAuthStore2.getState().login({ email: "new@orbitiq.ai", password: "Password1" });
+  await useAuthStore2.getState().login({ email: "new@satquery.ai", password: "Password1" });
 } catch (e) {
   otpErr = e;
 }
 check("unverified login raises EMAIL_NOT_VERIFIED (OTP flow)", otpErr?.code === "EMAIL_NOT_VERIFIED");
 calls = [];
-responder = () => ({ status: 200, ok: true, body: { user: { ...authedUser, email: "new@orbitiq.ai" }, ...tokens("otp") } });
-var otpUser = await useAuthStore2.getState().verifyEmail("new@orbitiq.ai", "123456");
+responder = () => ({ status: 200, ok: true, body: { user: { ...authedUser, email: "new@satquery.ai" }, ...tokens("otp") } });
+var otpUser = await useAuthStore2.getState().verifyEmail("new@satquery.ai", "123456");
 check(
   "OTP verification signs the account in",
-  calls[0].url === "/api/v1/auth/verify-email" && otpUser.email === "new@orbitiq.ai" && getTokens2().accessToken === "acc-otp"
+  calls[0].url === "/api/v1/auth/verify-email" && otpUser.email === "new@satquery.ai" && getTokens2().accessToken === "acc-otp"
 );
 calls = [];
 responder = () => ({ status: 401, ok: false, body: { detail: "Invalid authenticator code.", code: "MFA_INVALID" } });

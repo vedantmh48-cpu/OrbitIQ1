@@ -58,7 +58,7 @@ export default function HowToUse() {
     <div className="mx-auto max-w-4xl space-y-6">
       <div>
         <h1 className="flex items-center gap-2 text-2xl font-bold text-white"><BookOpen className="h-6 w-6 text-accent" /> How to Use</h1>
-        <p className="mt-1 text-sm text-slate-400">A step-by-step guide to OrbitIQ.</p>
+        <p className="mt-1 text-sm text-slate-400">A step-by-step guide to SatQuery AI.</p>
       </div>
 
       <div className="space-y-2">

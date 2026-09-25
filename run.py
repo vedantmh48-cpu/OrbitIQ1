@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""OrbitIQ / SatQuery AI - single-command developer launcher.
+"""SatQuery AI / SatQuery AI - single-command developer launcher.
 
     python run.py
 
@@ -354,7 +354,7 @@ def main(argv: list[str]) -> int:
 
     # ---- 5. Banner --------------------------------------------------------
     print("\n" + "=" * 64)
-    print("  OrbitIQ / SatQuery AI - running")
+    print("  SatQuery AI / SatQuery AI - running")
     print("=" * 64)
     print(f"  Frontend app   -> http://localhost:{frontend_port}")
     print(f"  Backend API    -> http://localhost:{backend_port}   (Swagger: /docs)")

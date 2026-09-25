@@ -123,7 +123,7 @@ export default function Login() {
       }
       subtitle={
         mode === "form"
-          ? "Access your OrbitIQ workspace."
+          ? "Access your SatQuery AI workspace."
           : mode === "verify_email"
           ? "Enter the 6-digit code we sent to your inbox."
           : "Enter the code from your authenticator app."
@@ -183,7 +183,7 @@ export default function Login() {
               id="create-account-heading"
               className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500"
             >
-              New to OrbitIQ?
+              New to SatQuery AI?
             </h2>
             <Link to="/register" className="btn-ghost mt-3 w-full">Create account</Link>
           </section>
