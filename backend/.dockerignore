@@ -1,0 +1,14 @@
+# Never bake local credentials or local persistent data into an image.
+.env
+.env.*
+!.env.example
+data/
+
+# Build/test artifacts and repository metadata.
+.git/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+tests/

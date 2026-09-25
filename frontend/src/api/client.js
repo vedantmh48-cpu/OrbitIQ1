@@ -1,4 +1,9 @@
-const API_BASE = import.meta.env.VITE_API_BASE || "";
+// Set to the backend origin only (no trailing slash and no /api suffix).
+const API_BASE = (import.meta.env.VITE_API_BASE || "").replace(/\/+$/, "");
+
+export function apiUrl(path) {
+  return `${API_BASE}${path}`;
+}
 
 let accessToken = localStorage.getItem("satquery_access") || "";
 let refreshToken = localStorage.getItem("satquery_refresh") || "";
@@ -38,13 +43,14 @@ export function getTokens() {
 const REFRESH_ENDPOINT = () => (sessionId ? "/api/v1/auth/refresh" : "/api/auth/refresh");
 
 async function request(path, { method = "GET", body, auth = true, raw = false } = {}) {
-  const headers = { "Content-Type": "application/json" };
+  const isFormData = typeof FormData !== "undefined" && body instanceof FormData;
+  const headers = isFormData ? {} : { "Content-Type": "application/json" };
   if (auth && accessToken) headers.Authorization = `Bearer ${accessToken}`;
 
-  let res = await fetch(`${API_BASE}${path}`, {
+  let res = await fetch(apiUrl(path), {
     method,
     headers,
-    body: body ? JSON.stringify(body) : undefined
+    body: body ? (isFormData ? body : JSON.stringify(body)) : undefined
   });
 
   // Single retry with a refreshed token on 401.
@@ -52,10 +58,10 @@ async function request(path, { method = "GET", body, auth = true, raw = false } 
     const ok = await tryRefresh();
     if (ok) {
       headers.Authorization = `Bearer ${accessToken}`;
-      res = await fetch(`${API_BASE}${path}`, {
+      res = await fetch(apiUrl(path), {
         method,
         headers,
-        body: body ? JSON.stringify(body) : undefined
+        body: body ? (isFormData ? body : JSON.stringify(body)) : undefined
       });
     }
   }

@@ -3,7 +3,7 @@ import {
   FileScan, Boxes, MapPin, FileJson, FileCode2, Ruler, Layers, Activity,
   Droplets, Leaf, Building2, Download, Satellite, Landmark
 } from "lucide-react";
-import { api, formatNumber } from "../api/client.js";
+import { api, downloadFile, formatNumber } from "../api/client.js";
 import { Alert, Badge, Button, Card, SectionTitle, Spinner } from "../components/ui.jsx";
 import MapView from "../components/MapView.jsx";
 
@@ -193,6 +193,15 @@ function GeoTiffParser() {
     }
   };
 
+  const downloadDemo = async () => {
+    setError("");
+    try {
+      await downloadFile("/api/geospatial/demo", "demo-kerala.tif");
+    } catch (e) {
+      setError(e.message);
+    }
+  };
+
   const onFile = async e => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -201,13 +210,7 @@ function GeoTiffParser() {
     try {
       const fd = new FormData();
       fd.append("file", file);
-      const raw = await fetch("/api/geospatial/parse", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${localStorage.getItem("satquery_access") || ""}` },
-        body: fd
-      });
-      const json = await raw.json();
-      if (!raw.ok) throw new Error(json.detail || "Parse failed");
+      const json = await api.post("/api/geospatial/parse", fd);
       setInfo(json);
       setFilename(file.name);
     } catch (err) {
@@ -235,9 +238,9 @@ function GeoTiffParser() {
           <Button variant="ghost" onClick={parseDemo} loading={loading}>
             <Satellite className="h-4 w-4" /> Parse demo GeoTIFF
           </Button>
-          <a href="/api/geospatial/demo" className="btn-ghost !no-underline">
+          <Button variant="ghost" onClick={downloadDemo}>
             <Download className="h-4 w-4" /> Download demo .tif
-          </a>
+          </Button>
           <span className="text-xs text-slate-500">Pure tag-level parsing — no GDAL required. Max 25 MB.</span>
         </div>
       </Card>
