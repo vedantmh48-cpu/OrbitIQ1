@@ -1,0 +1,421 @@
+/* =========================================================================
+   dashboard.css — view-specific styling
+   Layer 5. Overview, Missions, Fleet, Telemetry, Alerts + sparkline + motion.
+   ========================================================================= */
+
+.view-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* =========================================================================
+   Overview
+   ========================================================================= */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+@media (max-width: 1200px) {
+  .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+@media (max-width: 1080px) {
+  .overview-grid { grid-template-columns: 1fr; }
+}
+
+.fleet-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.fleet-strip .fleet-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-2);
+  padding: 0.3rem 0.65rem;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+.fleet-item.is-warn .dot { background: var(--ink-warn); box-shadow: 0 0 6px color-mix(in srgb, var(--ink-warn) 65%, transparent); }
+.fleet-item.is-crit .dot { background: var(--ink-danger); box-shadow: 0 0 6px color-mix(in srgb, var(--ink-danger) 65%, transparent); }
+.fleet-item .fi-name { color: var(--text); font-weight: 600; }
+
+.feed-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.feed-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-1);
+}
+.feed-item .feed-sev {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  flex: none;
+  margin-top: 0.4rem;
+}
+.feed-item.is-info .feed-sev { background: var(--ink-info); }
+.feed-item.is-low .feed-sev { background: var(--text-faint); }
+.feed-item.is-medium .feed-sev { background: var(--ink-warn); }
+.feed-item.is-high .feed-sev { background: var(--ink-danger); }
+.feed-item.is-critical .feed-sev { background: var(--ink-danger); box-shadow: 0 0 8px var(--ink-danger); }
+
+.feed-item .feed-body { min-width: 0; flex: 1 1 auto; }
+.feed-item .feed-title {
+  font-weight: 600;
+  font-size: 0.84rem;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.35;
+}
+.feed-item .feed-meta {
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  margin-top: 0.25rem;
+}
+.feed-item time { font-family: var(--font-mono); font-size: 0.68rem; }
+
+/* =========================================================================
+   Missions
+   ========================================================================= */
+
+.missions-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+.missions-toolbar .grow { flex: 1 1 auto; }
+.missions-toolbar .btn { flex: none; }
+
+.toolbar-input {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color var(--dur), box-shadow var(--dur);
+}
+.toolbar-input::placeholder { color: var(--text-faint); }
+.toolbar-input:focus {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.filter-seg .seg.is-active[data-filter="active"] { color: var(--ink-ok); background: color-mix(in srgb, var(--ink-ok) 12%, var(--surface-2)); }
+.filter-seg .seg.is-active[data-filter="holding"] { color: var(--ink-warn); background: color-mix(in srgb, var(--ink-warn) 12%, var(--surface-2)); }
+.filter-seg .seg.is-active[data-filter="all"] { color: var(--text); }
+
+.mission-row .mission-name {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.mission-row .mission-name .m-title { color: var(--text); font-weight: 600; }
+.mission-row .mission-name .m-meta { font-size: 0.7rem; color: var(--text-faint); }
+
+.progress-in-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 9rem;
+}
+.progress-in-cell .pct {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  width: 2.6rem;
+  text-align: right;
+  flex: none;
+}
+
+.row-actions {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+/* =========================================================================
+   Fleet
+   ========================================================================= */
+
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  gap: 1.1rem;
+}
+@media (max-width: 720px) {
+  .fleet-grid { grid-template-columns: 1fr; }
+}
+
+.fleet-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.1rem;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.fleet-card-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.fleet-card-head .fc-topline {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.fleet-card-head .fc-id {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-faint);
+}
+.fleet-card-head .fc-name { font-weight: 700; color: var(--text); font-size: 0.95rem; }
+.fleet-card-head .fc-orbit { font-size: 0.72rem; color: var(--text-dim); }
+
+.fc-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+.fc-metrics .readout-value { font-size: 1rem; }
+
+.fc-instruments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.fc-instruments .inst {
+  font-size: 0.66rem;
+  color: var(--text-faint);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.14rem 0.5rem;
+}
+
+.fc-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 0.45rem;
+}
+.fc-status .fc-meta { font-size: 0.7rem; color: var(--text-faint); }
+
+/* =========================================================================
+   Telemetry
+   ========================================================================= */
+
+.telemetry-layout {
+  display: grid;
+  grid-template-columns: minmax(13rem, 15rem) minmax(0, 1fr);
+  gap: 1.1rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .telemetry-layout { grid-template-columns: 1fr; }
+}
+
+.sat-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.sat-opt {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.7rem;
+  background: var(--surface-2);
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.sat-opt:hover { color: var(--text); background: var(--surface-3); }
+.sat-opt.is-active {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  color: var(--accent-soft);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface-2));
+  box-shadow: var(--glow-accent);
+}
+.sat-opt .so-id { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-faint); }
+.sat-opt .so-dot { flex: none; }
+
+.telemetry-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.1rem;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* live SVG chart */
+.chart {
+  width: 100%;
+  height: 11rem;
+}
+.chart polyline.chart-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.chart text.chart-label {
+  fill: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+}
+.chart polyline.chart-grid {
+  fill: none;
+  stroke: color-mix(in srgb, var(--text-faint) 35%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+
+.telemetry-readouts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+@media (max-width: 760px) {
+  .telemetry-readouts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.telemetry-readouts .readout {
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+/* =========================================================================
+   Alerts
+   ========================================================================= */
+
+.alerts-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+}
+.alerts-head .summary-pills {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.alert-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-1);
+}
+.alert-row.is-unacked {
+  border-color: color-mix(in srgb, var(--ink-warn) 40%, var(--border));
+}
+.alert-row .al-sev {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.6rem;
+  flex: none;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #fff;
+}
+.alert-row .al-body { flex: 1 1 auto; min-width: 0; }
+.alert-row .al-title { font-weight: 600; color: var(--text); margin: 0; font-size: 0.88rem; }
+.alert-row .al-msg { margin-top: 0.3rem; font-size: 0.8rem; color: var(--text-dim); line-height: 1.45; }
+.alert-row .al-meta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.45rem;
+  font-size: 0.7rem;
+  color: var(--text-faint);
+}
+
+.al-sev.sev-critical { background: var(--ink-danger); }
+.al-sev.sev-high { background: color-mix(in srgb, var(--ink-danger) 70%, var(--surface-2)); }
+.al-sev.sev-medium { background: var(--ink-warn); }
+.al-sev.sev-low { background: color-mix(in srgb, var(--ink-info) 60%, var(--surface-2)); }
+.al-sev.sev-info { background: color-mix(in srgb, var(--accent) 55%, var(--surface-2)); }
+
+/* =========================================================================
+   Motion + live indicators + responsive fine-tunes
+   ========================================================================= */
+
+.pulse-dot { animation: pulse-dot 1.8s ease-in-out infinite; }
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 7px color-mix(in srgb, var(--accent) 60%, transparent); }
+  50% { opacity: 0.45; }
+}
+
+.live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.68rem;
+  color: var(--accent-soft);
+}
+.live-indicator .pulse-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .view { padding: 1rem 1rem 1.5rem; }
+  .topbar { padding: 0 1rem; gap: 0.5rem; }
+  .utc-clock { display: none; }
+}
+
+/* Light theme fine-tunes */
+[data-theme="light"] .view {
+  background: radial-gradient(1100px 520px at 85% -5%, rgba(8, 145, 178, 0.05), transparent 60%),
+    var(--space-900);
+}

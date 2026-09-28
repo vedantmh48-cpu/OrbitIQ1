@@ -1,0 +1,522 @@
+/* =========================================================================
+   components.css — reusable UI components
+   Layer 4. Cards, buttons, badges, progress, tables, forms, modal, toasts.
+   ========================================================================= */
+
+/* =========================================================================
+   Cards
+   ========================================================================= */
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 26px -10px rgba(0, 0, 0, 0.38);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.card-head h2 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin: 0;
+  color: var(--text);
+}
+.card-head .card-sub {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+.card-body {
+  padding: 1rem 1.25rem;
+}
+
+/* Unit label chip inside a card head (e.g. "LIVE", "6 assets") */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.22rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  background: var(--surface-2);
+}
+.chip--accent {
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  color: var(--accent-soft);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface-2));
+}
+.chip--ok {
+  border-color: color-mix(in srgb, var(--ink-ok) 40%, transparent);
+  color: var(--ink-ok);
+  background: color-mix(in srgb, var(--ink-ok) 10%, var(--surface-2));
+}
+.chip--warn {
+  border-color: color-mix(in srgb, var(--ink-warn) 40%, transparent);
+  color: var(--ink-warn);
+  background: color-mix(in srgb, var(--ink-warn) 10%, var(--surface-2));
+}
+.chip--danger {
+  border-color: color-mix(in srgb, var(--ink-danger) 40%, transparent);
+  color: var(--ink-danger);
+  background: color-mix(in srgb, var(--ink-danger) 10%, var(--surface-2));
+}
+
+/* =========================================================================
+   KPI / stat card
+   ========================================================================= */
+
+.kpi {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem 1.15rem;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.kpi::after {
+  content: "";
+  position: absolute;
+  inset: auto -1.5rem -4rem auto;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  pointer-events: none;
+}
+.kpi-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+.kpi-value {
+  font-family: var(--font-mono);
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--text);
+}
+.kpi-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+.kpi .trend-up { color: var(--ink-ok); }
+.kpi .trend-down { color: var(--ink-danger); }
+
+/* ghost ring behind a value (decorative) */
+.kpi .ring {
+  position: absolute;
+  right: 0.9rem;
+  top: 0.9rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  box-shadow: inset 0 0 8px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+
+/* =========================================================================
+   Buttons
+   ========================================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--surface-2);
+  transition: background var(--dur), border-color var(--dur), color var(--dur), transform var(--dur);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-3);
+  transform: translateY(-1px);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn--solid {
+  background: color-mix(in srgb, var(--accent) 18%, var(--surface-2));
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--accent-soft);
+}
+.btn--solid:hover {
+  background: color-mix(in srgb, var(--accent) 30%, var(--surface-2));
+  box-shadow: var(--glow-accent);
+}
+
+.btn--ok {
+  background: color-mix(in srgb, var(--ink-ok) 16%, var(--surface-2));
+  border-color: color-mix(in srgb, var(--ink-ok) 45%, transparent);
+  color: var(--ink-ok);
+}
+
+.btn--danger {
+  background: color-mix(in srgb, var(--ink-danger) 14%, var(--surface-2));
+  border-color: color-mix(in srgb, var(--ink-danger) 45%, transparent);
+  color: var(--ink-danger);
+}
+.btn--danger:hover { box-shadow: 0 0 12px color-mix(in srgb, var(--ink-danger) 45%, transparent); }
+
+.btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-dim);
+}
+.btn--ghost:hover { color: var(--text); }
+
+.btn--sm {
+  padding: 0.28rem 0.6rem;
+  font-size: 0.72rem;
+}
+
+/* =========================================================================
+   Badges / pills
+   ========================================================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.16rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  background: var(--surface-2);
+  white-space: nowrap;
+}
+.badge--ok { color: var(--ink-ok); background: color-mix(in srgb, var(--ink-ok) 12%, var(--surface-2)); border-color: color-mix(in srgb, var(--ink-ok) 35%, transparent); }
+.badge--warn { color: var(--ink-warn); background: color-mix(in srgb, var(--ink-warn) 12%, var(--surface-2)); border-color: color-mix(in srgb, var(--ink-warn) 35%, transparent); }
+.badge--danger { color: var(--ink-danger); background: color-mix(in srgb, var(--ink-danger) 12%, var(--surface-2)); border-color: color-mix(in srgb, var(--ink-danger) 35%, transparent); }
+.badge--info { color: var(--ink-info); background: color-mix(in srgb, var(--ink-info) 12%, var(--surface-2)); border-color: color-mix(in srgb, var(--ink-info) 35%, transparent); }
+.badge--violet { color: var(--ink-violet); background: color-mix(in srgb, var(--ink-violet) 12%, var(--surface-2)); border-color: color-mix(in srgb, var(--ink-violet) 35%, transparent); }
+.badge--muted { color: var(--text-faint); }
+.badge--accent { color: var(--accent-soft); background: color-mix(in srgb, var(--accent) 12%, var(--surface-2)); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+
+/* =========================================================================
+   Progress
+   ========================================================================= */
+
+.progress {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-3) 70%, transparent);
+  overflow: hidden;
+}
+.progress > .progress-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-deep), var(--accent));
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 55%, transparent);
+  transition: width 500ms var(--ease-out);
+}
+.progress-fill--ok { background: var(--ink-ok); box-shadow: 0 0 8px color-mix(in srgb, var(--ink-ok) 45%, transparent); }
+.progress-fill--warn { background: var(--ink-warn); box-shadow: 0 0 8px color-mix(in srgb, var(--ink-warn) 45%, transparent); }
+.progress-fill--danger { background: var(--ink-danger); box-shadow: 0 0 8px color-mix(in srgb, var(--ink-danger) 45%, transparent); }
+
+.progress-track {
+  display: flex;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  color: var(--text-faint);
+}
+
+/* numeric readout group (label + value) */
+.readout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.readout-label {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+.readout-value {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: color var(--dur);
+}
+
+/* =========================================================================
+   Tables
+   ========================================================================= */
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+.table th {
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-faint);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border-strong);
+  white-space: nowrap;
+}
+.table td {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dim);
+  vertical-align: middle;
+}
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr:hover td {
+  background: color-mix(in srgb, var(--surface-2) 55%, transparent);
+}
+.table .cell-strong { color: var(--text); font-weight: 600; }
+.table .cell-mono { font-family: var(--font-mono); }
+
+/* =========================================================================
+   Forms
+   ========================================================================= */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.field > label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+.field input,
+.field select,
+.field textarea {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.7rem;
+  color: var(--text);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color var(--dur), box-shadow var(--dur);
+}
+.field input::placeholder { color: var(--text-faint); }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+.field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--text-faint) 50%),
+    linear-gradient(135deg, var(--text-faint) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 55%, calc(100% - 14px) 55%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+}
+.field textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+.form-grid .field--full { grid-column: 1 / -1; }
+
+/* =========================================================================
+   Modal
+   ========================================================================= */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: var(--overlay);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  animation: fade-in 180ms ease-out both;
+}
+.modal {
+  width: min(38rem, calc(100vw - 2.5rem));
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  background: var(--surface-1);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 60px -18px rgba(0, 0, 0, 0.6), var(--glow-accent);
+  animation: modal-pop 220ms var(--ease-out) both;
+}
+.modal-inner { padding: 1.25rem 1.4rem; }
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.modal-head h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes modal-pop {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* =========================================================================
+   Toasts
+   ========================================================================= */
+
+.toast-stack {
+  position: fixed;
+  top: 1rem;
+  right: 1.25rem;
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  pointer-events: none;
+  max-width: 24rem;
+}
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radius);
+  background: var(--surface-1);
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--accent);
+  color: var(--text);
+  font-size: 0.8rem;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+  animation: toast-in 260ms var(--ease-out) both;
+}
+.toast--ok { border-left-color: var(--ink-ok); }
+.toast--warn { border-left-color: var(--ink-warn); }
+.toast--danger { border-left-color: var(--ink-danger); }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(18px); }
+  to { opacity: 1; transform: none; }
+}
+.toast.is-leaving { opacity: 0; transform: translateX(14px); }
+
+/* =========================================================================
+   Skeleton + empty state
+   ========================================================================= */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--surface-3) 65%, var(--surface-2));
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    color-mix(in srgb, var(--text-faint) 30%, transparent) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.1s linear infinite;
+}
+@keyframes shimmer {
+  from { transform: translateX(-30%); }
+  to { transform: translateX(110%); }
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  gap: 0.6rem;
+  padding: 2.4rem 1rem;
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 0.85rem;
+}
+.empty-state .empty-title { color: var(--text-dim); font-weight: 600; }
+
+/* =========================================================================
+   Segmented control (tone picker, filters)
+   ========================================================================= */
+
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  padding: 0.2rem;
+  gap: 0.15rem;
+}
+.segmented button.seg {
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: calc(var(--radius-sm) - 0.2rem);
+  cursor: pointer;
+}
+.segmented button.seg.is-active {
+  background: color-mix(in srgb, var(--accent) 16%, var(--surface-2));
+  color: var(--accent-soft);
+}
